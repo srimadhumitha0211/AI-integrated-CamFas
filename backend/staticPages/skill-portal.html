@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+    
+    <style>
+
+        :root{
+    --primary: #e5a7ff;
+    --secondary:  #e5a7ff;
+    --light:linear-gradient(135deg, #e6c7ff, #f3dcff, #ffd6ff);
+    
+    --text: #330e43;
+}
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins', sans-serif;
+        }
+
+        body{
+            min-height: 100vh;
+              background: linear-gradient(135deg, #e6c7ff, #f3dcff, #ffd6ff);
+        
+}
+
+        
+
+        /* Header */
+      
+
+         header {
+        background: rgba(203, 103, 199, 0.674);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        /* width: 100%; */
+
+        padding: 10px 0;
+        }
+
+
+    .header-flex {
+        /* display: flex; */
+        flex-direction: column;
+        /* justify-content: space-between; */
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .logo-box {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo-box img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        background: #ca93e2;;
+    }
+
+    .logo-text h1 {
+        font-size: 20px;
+        color: #330e43;
+        text-align: left;
+    }
+
+    .logo-text span {
+        font-size: 12px;
+        /* color: #f1f1f1; */
+        color: #330e43;
+    }
+
+    /* NAV */
+    .nav-buttons {
+        display: flex;
+        gap: 18px;
+    }
+
+    .nav-btn {
+        text-decoration: none;
+        /* color: #fff; */
+        color: #330e43;
+        font-size: 14px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+
+    .nav-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+/* Portal Container */
+.skill-portal{
+   max-width:1100px;
+margin:20px auto;
+padding:18px;
+/* background:white; */
+background: rgba(255, 255, 255, 0.6);
+border-radius:14px;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+
+}
+ .portal-header{
+    text-align: center;
+    margin: 20px 0;
+  color:  #330e43;
+ }
+ 
+.portal-header h1{
+    margin-bottom: 8px;
+    font-size: 36px;
+
+}
+.portal-header p{
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.portal-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:10px;
+}
+
+.portal-buttons button{
+    padding:10px 18px;
+    border-radius:10px;
+}
+
+/* Tabs */
+.tab-container{
+    display:flex;
+    justify-content: center;
+    gap:10px;
+    margin-bottom:20px;
+    
+}
+
+.tab-btn{
+   padding:12px 28px;
+border:none;
+border-radius:8px;
+background:#f0f0f0;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+ background: #f2c8ff;
+}
+
+.tab-btn:hover{ 
+    
+    
+    background: #e5a7ff;
+color:black;
+transform:translateY(-2px);
+
+}
+
+.tab-btn.active{
+    background: #f2c8ff;
+   
+    color:black;
+}
+.tab-btn.active:hover{
+    background: #e5a7ff;
+color:black;
+transform:translateY(-2px);
+
+}
+
+h1{
+font-size:35px;
+margin-top:30px;
+margin-bottom:5px;
+ color:  #330e43;
+ text-align: center;
+}
+
+.add-skill-btn{
+
+    background: #e5a7ff;
+    color: black;
+    border: 1px solid rgba(219, 100, 227, 0.456);
+    
+    width: 180px;        /* Reduce width */
+    height: 40px;    
+       /* Increase length (height) */
+
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+
+    display: block;
+    margin-top: 10px auto; 
+    
+    
+}
+
+.skill-header{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;  /* makes items go top → bottom */
+    padding-bottom: 30px;
+    background: linear-gradient(135deg, #ffd6ff, #f3dcff, #ffd6ff);
+    border-radius: 10px;
+    align-items: center;
+  padding-bottom: 30px;
+}
+
+#skills-container{
+    margin-top:10px;
+}
+
+/* .add-skill-btn{
+    background: #e5a7ff;
+    color: black;
+    border: 1px solid rgba(219, 100, 227, 0.456);
+
+    width: 200px;     
+    height: 30px;     
+
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+
+} */
+.skills-grid{
+    padding-top: 30px;
+}
+
+/* Skill Cards */
+.skill-card{
+    background: rgba(255, 255, 255, 0.6);
+    /* background:white; */
+    border-radius:12px;
+    padding:18px;
+    border:1px solid var(--border);
+    transition:0.2s;
+}
+
+.skill-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.08);
+}
+
+/* Student Cards */
+.student-card{
+    /* background:white; */
+    background: rgba(255, 255, 255, 0.6);
+    border-radius:12px;
+    padding:18px;
+    border:1px solid var(--border);
+    margin-bottom:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.student-card:hover{
+    box-shadow:0 6px 15px rgba(0,0,0,0.08);
+}
+
+/* Buttons */
+button{
+    font-family:inherit;
+}
+
+.connect-btn{
+    background:#2e7d32;
+color:white;
+padding:12px 22px;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.connect-btn:hover{
+    /* background:#5563d1; */
+    background:#1b5e20;
+}
+
+/* Search Box */
+.search-section{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    border:1px solid var(--border);
+}
+
+/* Inputs */
+input,select{
+    border-radius:8px !important;
+}
+
+/* Request Cards */
+.request-card{
+    background:white;
+    border-radius:10px;
+    border-left:4px solid var(--primary);
+    padding:15px;
+    margin-bottom:12px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.05);
+}
+
+/* Modal Box */
+#addSkillModal div,
+#connectModal div{
+    border-radius:12px;
+}
+
+.container{
+    max-width:1100px;
+    width: 100%;
+    margin:auto;
+    /* padding:0 40px; */
+}
+
+
+
+    @media (max-width: 768px) {
+
+    .header-flex {
+        flex-direction: column;
+         align-items: center;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .nav-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    }
+    </style>
+</head>
+   
+
+<body>
+     <header>
+        <div class="container header-flex">
+
+            <!-- LOGO + NAME -->
+           <div class="logo-box">
+                <img src="cse-bg-img/logo.jpeg">
+                <div class="logo-text">
+                    <h1>CAMFAS</h1>
+                    <p>Simplifying Campus Life for Faculty and Students</p>
+                </div>
+            </div>
+
+
+            
+
+            <!-- NAV -->
+            <nav class="nav-buttons">
+                <a href="#" class="nav-btn">Login</a>
+                <a href="#departments" class="nav-btn">Departments</a>
+                <a href="mainAbout.html" class="nav-btn">About Us</a>
+                <a href="#contact" class="nav-btn">Contact</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <div class="skill-portal">
+        <div class="portal-header">
+            <h1>🎯 Skill Connect Portal</h1>
+            <p>Showcase your skills, find peers, and collaborate!</p>
+        </div>
+
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="showTab('my-skills')">My Skills</button>
+            <button class="tab-btn" onclick="showTab('discover')">Discover Peers</button>
+            <button class="tab-btn" onclick="showTab('requests')">Requests</button>
+        </div>
+
+        <!-- Tab 1: My Skills -->
+        <div id="my-skills" class="tab-content">
+            <div class="skill-header">
+                <h2>My Skill Profile</h2>
+                <button class="add-skill-btn" onclick="showAddSkillModal()">
+                    + Add Skill
+                </button>
+            </div>
+            
+            <div id="mySkillsContainer" class="skills-grid">
+                <!-- Skills will load here -->
+                <p>Loading your skills...</p>
+            </div>
+        </div>
+
+        <!-- Tab 2: Discover Peers -->
+        <div id="discover" class="tab-content" style="display: none;">
+            <div class="search-section">
+                <h3>🔍 Find Peers by Skills</h3>
+                <div class="filter-group">
+                    <input type="text" id="skillSearch" placeholder="Search skill (e.g., Python)" style="padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    
+                    <select id="levelFilter" style="padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        <option value="">Any Level</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                    
+                    <select id="deptFilter" style="padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        <option value="">Any Department</option>
+                        <option value="CSE">CSE</option>
+                        <option value="AI&DS">AI&DS</option>
+                        <option value="ECE">ECE</option>
+                        <option value="EEE">EEE</option>
+                        <option value="MECH">MECH</option>
+                    </select>
+                    
+                    <button onclick="searchStudents()" style="background: #667eea; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer;">
+                        Search
+                    </button>
+                </div>
+            </div>
+            
+            <div id="searchResults">
+                <!-- Search results will appear here -->
+                <p style="text-align: center; color: #999;">Use filters to find peers with specific skills</p>
+            </div>
+        </div>
+
+        <!-- Tab 3: Requests -->
+        <div id="requests" class="tab-content" style="display: none;">
+            <h3>📨 Incoming Requests</h3>
+            <div id="incomingRequests">
+                <!-- Incoming requests -->
+            </div>
+            
+            <h3 style="margin-top: 30px;">📤 Outgoing Requests</h3>
+            <div id="outgoingRequests">
+                <!-- Outgoing requests -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Skill Modal -->
+    <div id="addSkillModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+        <div style="background: white; max-width: 500px; margin: 100px auto; padding: 30px; border-radius: 10px;">
+            <h3>Add New Skill</h3>
+            <select id="skillSelect" style="width: 100%; padding: 10px; margin: 10px 0;">
+                <option value="">Select Skill</option>
+            </select>
+            
+            <select id="levelSelect" style="width: 100%; padding: 10px; margin: 10px 0;">
+                <option value="beginner">🌱 Beginner</option>
+                <option value="intermediate">🌿 Intermediate</option>
+                <option value="advanced">🌳 Advanced</option>
+                <option value="expert">🏆 Expert</option>
+            </select>
+            
+            <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                <button onclick="addSkill()" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px;">Add</button>
+                <button onclick="closeModal()" style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 5px;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connect Modal - UPDATED VERSION -->
+    <div id="connectModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+        <div style="background: white; max-width: 500px; margin: 100px auto; padding: 30px; border-radius: 10px;">
+            <h3 id="connectStudentName">Connect with Student</h3>
+            
+            <!-- Skill selector will be dynamically added here -->
+            <div id="skillSelectorContainer"></div>
+            
+            <select id="messageTemplate" style="width: 100%; padding: 10px; margin: 10px 0;">
+                <option value="Hi! I see you're skilled in [SKILL]. Can we meet to discuss?">🤝 Hi! I see you're skilled in [SKILL]. Can we meet to discuss?</option>
+                <option value="I need guidance on [SKILL]. Would you be free to help?">📚 I need guidance on [SKILL]. Would you be free to help?</option>
+                <option value="Let's collaborate on a project using [SKILL]!">💡 Let's collaborate on a project using [SKILL]!</option>
+                <option value="I have a doubt about [SKILL]. Can you explain?">❓ I have a doubt about [SKILL]. Can you explain?</option>
+                <option value="Let's form a study group for [SKILL]">👥 Let's form a study group for [SKILL]</option>
+            </select>
+            
+            <input type="text" id="customMessage" placeholder="Add optional note..." style="width: 100%; padding: 10px; margin: 10px 0;">
+            
+            <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                <button onclick="sendConnectionRequest()" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px;">Send Request</button>
+                <button onclick="closeConnectModal()" style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 5px;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSkillId = null;
+        let currentStudentId = null;
+        let allSkills = [];
+
+        // Tab switching
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(tabId).style.display = 'block';
+            event.target.classList.add('active');
+            
+            if (tabId === 'my-skills') loadMySkills();
+            if (tabId === 'requests') loadRequests();
+        }
+
+        // Load all skills for dropdown
+        async function loadAllSkills() {
+            try {
+                const response = await fetch('/skills/all-skills');
+                allSkills = await response.json();
+                
+                const select = document.getElementById('skillSelect');
+                select.innerHTML = '<option value="">Select Skill</option>' + 
+                    allSkills.map(s => `<option value="${s._id}">${s.icon || '🔹'} ${s.name} (${s.category})</option>`).join('');
+            } catch (error) {
+                console.error('Error loading skills:', error);
+            }
+        }
+
+        // Load my skills
+        async function loadMySkills() {
+            try {
+                const response = await fetch('/skills/my-skills');
+                const skills = await response.json();
+                
+                const container = document.getElementById('mySkillsContainer');
+                
+                if (skills.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; color: #999;">You haven\'t added any skills yet. Click "Add Skill" to get started!</p>';
+                    return;
+                }
+                
+                container.innerHTML = skills.map(s => `
+                    <div class="skill-card">
+                        <div style="display: flex; align-items: center;">
+                            <span class="skill-icon">${s.skillId.icon || '🔹'}</span>
+                            <span class="skill-name">${s.skillId.name}</span>
+                        </div>
+                        <div class="skill-level">
+                            <span class="level-badge level-${s.level}">${s.level}</span>
+                        </div>
+                        <div style="margin-top: 10px; display: flex; gap: 5px;">
+                            <button onclick="updateSkillLevel('${s._id}')" style="background: #ffc107; color: black; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Update</button>
+                            <button onclick="removeSkill('${s._id}')" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Remove</button>
+                        </div>
+                    </div>
+                `).join('');
+                
+            } catch (error) {
+                console.error('Error loading my skills:', error);
+            }
+        }
+
+        // Search students
+        async function searchStudents() {
+            const skill = document.getElementById('skillSearch').value;
+            const level = document.getElementById('levelFilter').value;
+            const dept = document.getElementById('deptFilter').value;
+            
+            try {
+                const response = await fetch(`/skills/search?skill=${skill}&level=${level}&department=${dept}`);
+                const students = await response.json();
+                
+                const container = document.getElementById('searchResults');
+                
+                if (students.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; color: #999;">No students found matching your criteria.</p>';
+                    return;
+                }
+                
+                container.innerHTML = students.map(s => {
+                    // Get first skill ID safely
+                    const firstSkillId = s.skills && s.skills.length > 0 ? s.skills[0].id : '';
+                    
+                    return `
+                        <div class="student-card">
+                            <div class="student-info">
+                                <h4>${s.name}</h4>
+                                <p>${s.department || 'Not specified'}</p>
+                                <div class="student-skills">
+                                    ${s.skills.slice(0, 3).map(skill => 
+                                        `<span class="skill-tag">${skill.name} (${skill.level})</span>`
+                                    ).join('')}
+                                    ${s.skills.length > 3 ? `<span class="skill-tag">+${s.skills.length-3} more</span>` : ''}
+                                </div>
+                            </div>
+                            <button class="connect-btn" onclick="openConnectModal('${s._id}', '${s.name}', '${firstSkillId}')">Connect</button>
+                        </div>
+                    `;
+                }).join('');
+                
+            } catch (error) {
+                console.error('Error searching students:', error);
+            }
+        }
+
+        // Open connect modal - FIXED VERSION
+        function openConnectModal(studentId, studentName, skillId) {
+            console.log('Opening connect modal for:', { studentId, studentName, skillId });
+            
+            // Store the values
+            currentStudentId = studentId;
+            currentSkillId = skillId;
+            
+            // Update modal title
+            document.getElementById('connectStudentName').innerHTML = `Connect with ${studentName}`;
+            
+            // Clear previous skill selector
+            document.getElementById('skillSelectorContainer').innerHTML = '';
+            
+            // Show the modal
+            document.getElementById('connectModal').style.display = 'block';
+            
+            // If no skillId was provided or it's empty, fetch student's skills
+            if (!skillId || skillId === '') {
+                console.log('No skill ID provided, fetching student skills...');
+                fetchStudentSkills(studentId);
+            } else {
+                // Add a hidden indicator that we're using the provided skill
+                const skillIndicator = document.createElement('div');
+                skillIndicator.id = 'skillIndicator';
+                skillIndicator.style.margin = '10px 0';
+                skillIndicator.style.padding = '10px';
+                skillIndicator.style.background = '#e3f2fd';
+                skillIndicator.style.borderRadius = '5px';
+                skillIndicator.innerHTML = `<span>🔹 Connecting about selected skill</span>`;
+                document.getElementById('skillSelectorContainer').appendChild(skillIndicator);
+            }
+        }
+
+        // Fetch student's skills if no skill ID provided
+        async function fetchStudentSkills(studentId) {
+            try {
+                const response = await fetch(`/skills/student/${studentId}`);
+                const data = await response.json();
+                
+                if (data.skills && data.skills.length > 0) {
+                    // Create a dropdown for skills
+                    const skillsHtml = data.skills.map(s => 
+                        `<option value="${s.id}">${s.name} (${s.level})</option>`
+                    ).join('');
+                    
+                    const skillSelector = document.createElement('div');
+                    skillSelector.id = 'skillSelector';
+                    skillSelector.innerHTML = `
+                        <div style="margin: 15px 0;">
+                            <label style="font-weight: bold; display: block; margin-bottom: 5px;">Select Skill to Connect About:</label>
+                            <select id="connectSkillSelect" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                                <option value="">-- Choose a skill --</option>
+                                ${skillsHtml}
+                            </select>
+                        </div>
+                    `;
+                    
+                    document.getElementById('skillSelectorContainer').appendChild(skillSelector);
+                    
+                    // Add event listener to update currentSkillId when selection changes
+                    document.getElementById('connectSkillSelect').addEventListener('change', function() {
+                        currentSkillId = this.value;
+                        console.log('Selected skill:', currentSkillId);
+                    });
+                } else {
+                    // No skills found
+                    const noSkillsMsg = document.createElement('div');
+                    noSkillsMsg.style.margin = '15px 0';
+                    noSkillsMsg.style.padding = '10px';
+                    noSkillsMsg.style.background = '#fff3cd';
+                    noSkillsMsg.style.color = '#856404';
+                    noSkillsMsg.style.borderRadius = '5px';
+                    noSkillsMsg.innerHTML = '⚠️ This student hasn\'t added any skills yet.';
+                    document.getElementById('skillSelectorContainer').appendChild(noSkillsMsg);
+                }
+            } catch (error) {
+                console.error('Error fetching student skills:', error);
+            }
+        }
+
+        // Send connection request - FIXED VERSION
+        async function sendConnectionRequest() {
+            // Check if skill selector exists and use its value
+            const skillSelector = document.getElementById('connectSkillSelect');
+            if (skillSelector) {
+                currentSkillId = skillSelector.value;
+            }
+            
+            const messageTemplate = document.getElementById('messageTemplate').value;
+            const customMessage = document.getElementById('customMessage').value;
+
+            // Validate inputs
+            if (!currentStudentId) {
+                alert('❌ No student selected');
+                return;
+            }
+            
+            if (!currentSkillId || currentSkillId === '') {
+                alert('❌ Please select a skill to connect about');
+                return;
+            }
+
+            console.log('Sending connection request with:', {
+                toStudentId: currentStudentId,
+                skillId: currentSkillId,
+                messageTemplate,
+                customMessage
+            });
+
+            try {
+                const response = await fetch('/skills/connect', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        toStudentId: currentStudentId,
+                        skillId: currentSkillId,
+                        messageTemplate: messageTemplate,
+                        customMessage: customMessage
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('✅ Request sent successfully!');
+                    closeConnectModal();
+                    // Refresh requests tab if open
+                    if (document.getElementById('requests').style.display === 'block') {
+                        loadRequests();
+                    }
+                } else {
+                    console.error('Server error:', data);
+                    alert('❌ Error sending request: ' + (data.error || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Network or JS error:', error);
+                alert('❌ Error sending request. Please try again.');
+            }
+        }
+
+        // Load requests
+        async function loadRequests() {
+            try {
+                const response = await fetch('/skills/my-requests');
+                const data = await response.json();
+                
+                // Incoming
+                const incoming = document.getElementById('incomingRequests');
+                if (data.incoming.length === 0) {
+                    incoming.innerHTML = '<p style="color: #999;">No incoming requests</p>';
+                } else {
+                    incoming.innerHTML = data.incoming.map(req => `
+                        <div class="request-card">
+                            <div style="display: flex; justify-content: space-between;">
+                                <div>
+                                    <strong>${req.fromStudent.name}</strong> wants to connect
+                                    <span class="request-status status-${req.status}">${req.status}</span>
+                                </div>
+                            </div>
+                            <p style="margin: 10px 0; color: #666;">${req.messageTemplate}</p>
+                            ${req.customMessage ? `<p style="color: #999; font-size: 14px;">📝 ${req.customMessage}</p>` : ''}
+                            ${req.status === 'pending' ? `
+                                <div style="margin-top: 10px;">
+                                    <button onclick="respondToRequest('${req._id}', 'accepted')" style="background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 5px; margin-right: 10px;">Accept</button>
+                                    <button onclick="respondToRequest('${req._id}', 'declined')" style="background: #dc3545; color: white; border: none; padding: 8px 16px; border-radius: 5px;">Decline</button>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `).join('');
+                }
+                
+                // Outgoing
+                const outgoing = document.getElementById('outgoingRequests');
+                if (data.outgoing.length === 0) {
+                    outgoing.innerHTML = '<p style="color: #999;">No outgoing requests</p>';
+                } else {
+                    outgoing.innerHTML = data.outgoing.map(req => `
+                        <div class="request-card">
+                            <div style="display: flex; justify-content: space-between;">
+                                <div>
+                                    To: <strong>${req.toStudent.name}</strong>
+                                    <span class="request-status status-${req.status}">${req.status}</span>
+                                </div>
+                            </div>
+                            <p style="margin: 10px 0; color: #666;">${req.messageTemplate}</p>
+                        </div>
+                    `).join('');
+                }
+                
+            } catch (error) {
+                console.error('Error loading requests:', error);
+            }
+        }
+
+        // Respond to request
+        async function respondToRequest(requestId, status) {
+            try {
+                const response = await fetch(`/skills/respond/${requestId}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status })
+                });
+                
+                if (response.ok) {
+                    alert(`Request ${status}!`);
+                    loadRequests();
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        // Modal functions
+        function showAddSkillModal() {
+            loadAllSkills();
+            document.getElementById('addSkillModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('addSkillModal').style.display = 'none';
+        }
+
+        function closeConnectModal() {
+            document.getElementById('connectModal').style.display = 'none';
+            
+            // Clear the skill selector container
+            document.getElementById('skillSelectorContainer').innerHTML = '';
+            
+            // Reset variables
+            currentStudentId = null;
+            currentSkillId = null;
+        }
+
+        // Add skill
+        async function addSkill() {
+            const skillId = document.getElementById('skillSelect').value;
+            const level = document.getElementById('levelSelect').value;
+            
+            if (!skillId) {
+                alert('Please select a skill');
+                return;
+            }
+            
+            try {
+                const response = await fetch('/skills/add-skill', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ skillId, level })
+                });
+                
+                if (response.ok) {
+                    alert('✅ Skill added successfully!');
+                    closeModal();
+                    loadMySkills();
+                } else {
+                    const data = await response.json();
+                    alert('❌ ' + (data.error || 'Error adding skill'));
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        // Update skill level
+        async function updateSkillLevel(id) {
+            const newLevel = prompt('Enter new level (beginner/intermediate/advanced/expert):');
+            if (!newLevel) return;
+            
+            if (!['beginner', 'intermediate', 'advanced', 'expert'].includes(newLevel)) {
+                alert('Invalid level!');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/skills/update-skill/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ level: newLevel })
+                });
+                
+                if (response.ok) {
+                    alert('✅ Skill updated!');
+                    loadMySkills();
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        // Remove skill
+        async function removeSkill(id) {
+            if (!confirm('Remove this skill?')) return;
+            
+            try {
+                const response = await fetch(`/skills/remove-skill/${id}`, {
+                    method: 'DELETE'
+                });
+                
+                if (response.ok) {
+                    alert('✅ Skill removed');
+                    loadMySkills();
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        // Initial load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMySkills();
+        });
+    </script>
+</body>
+</html>

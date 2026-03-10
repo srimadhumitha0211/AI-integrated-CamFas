@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Form</title>
+    <link rel="stylesheet" href="glady.css">
+</head>
+<body>
+    <header style="padding: 10px;">
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="logo">
+                   <img class="header-image" src="/camfslogo.jpeg" alt="College Logo">
+                </div>
+                <nav style="margin-top: 23px;">
+                    <a href="/student/dashboard">Home</a>
+                    <a href="/student/leave-form">Apply Leave</a>
+                    <a href="/student/leave-history">History</a>
+                    <a href="/auth/logout">Logout</a>
+                     <a href="/student/ai-assistant">AI Study</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Apply leave section -->
+    <section id="apply-leave-section" class="dashboard-section">
+        <div class="section-header">
+            <h2><i class="fas fa-file-upload"></i> Apply for Leave</h2>
+        </div>
+        <h3>Fill the form below to apply for leave</h3>
+
+        <form id="leaveForm" class="leave-form" action="/leave/submit" method="POST">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="leaveType"><i class="fas fa-tag"></i> Leave Type</label>
+                    <select id="leaveType" name="leaveType" required>
+                        <option value="">Select leave type</option>
+                        <option value="personal">Personal Leave</option>
+                        <option value="medical">Medical Leave</option>
+                        <option value="od">OD</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="startDate"><i class="fas fa-calendar-alt"></i> Start Date</label>
+                    <input type="date" id="startDate" name="startDate" required>
+               
+                    <label for="endDate"><i class="fas fa-calendar-alt"></i> End Date</label>
+                    <input type="date" id="endDate" name="endDate" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="reason"><i class="fas fa-comment"></i> Reason</label>
+                <textarea id="reason" name="reason" rows="1" required placeholder="Provide your reason"></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Submit Application
+                </button>
+                <button type="button" class="btn btn-secondary" id="cancelLeaveBtn" onclick="window.location.href='/student/dashboard'">
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <div class="dashboard-content">
+        <!-- Home Section (simplified) -->
+        <section id="home-section" class="dashboard-section active">
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3 id="pendingCount">0</h3>
+                        <p>Pending</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon approved">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="approvedCount">0</h3>
+                        <p>Approved Leaves</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon rejected">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="rejectedCount">0</h3>
+                        <p>Rejected Leaves</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon total">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalCount">0</h3>
+                        <p>Total</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="footer-wrapper">
+            <div class="wrapper-1" style="margin-left: 30px;">
+                <h4>Department</h4>
+                <ul>
+                    <li>CSE</li>
+                    <li>AI & DS</li>
+                    <li>EEE</li>
+                    <li>ECE</li>
+                    <li>MECH</li>
+                </ul>
+            </div>
+            <div class="wrapper-2">
+                <h4>About Us</h4>
+                <ul>
+                    <li>Educate</li>
+                    <li>Innovate</li>
+                    <li>Inspire</li>
+                    <li>Lead</li>
+                </ul>
+            </div>
+            <div class="wrapper-3">
+                <div>
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li>Location: Thoothukudi, Tamil Nadu</li>
+                        <li>Phone: +91 94432 01279</li>
+                        <li>Email: principal@mtec.ac.in</li>
+                    </ul>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com">🅾 Instagram</a>
+                    <a href="https://www.facebook.com">Facebook</a>
+                    <a href="https://www.linkedin.com">LinkedIn</a>
+                </div>
+            </div>
+            <div class="wrapper-4">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li>Admissions</li>
+                    <li>Academics</li>
+                    <li>Examinations</li>
+                    <li>Placements</li>
+                    <li>Student Portal</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+    <style>
+        * 
+ {
+    margin: 10;
+    padding: 10;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+header{
+    padding: 20px 0px;
+      background: rgb(247, 109, 208);
+    color: #ffffff;
+    box-sizing: border-box;
+    margin-bottom: 40px;
+}
+
+.header-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-wrapper nav {
+    display: flex;
+    gap: 35px;
+}
+
+.header-wrapper nav a {
+    color:black;
+    text-decoration: none;
+    font-size: 17px;
+    align-items: center;
+    /* margin-bottom: 5px; */
+    
+    
+}
+.header-image {
+    height: 60px;
+    width: 80px;
+    align-items: center;
+}
+@media (max-width: 768px) {
+
+    .header-wrapper {
+        flex-direction: column;
+        gap: 0px;
+    }
+    .header-image{
+        align-items: center;
+    }
+
+    .header-wrapper nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0px;
+    }
+}
+
+
+
+/* body {
+    background: #7d3578;
+} */
+
+/* ===== DASHBOARD LAYOUT ===== */
+.dashboard-container {
+    display: flex;
+    min-height: 50vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 260px;
+    background: #d20c8d;
+    color: rgb(233, 10, 200);
+    padding: 20px;
+}
+
+.sidebar-header h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.sidebar-nav {
+    margin-top: 20px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    background: #ef09aa;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* ===== HEADER ===== */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#notificationCount {
+    background: rgb(243, 11, 96);
+    color: rgb(250, 250, 250);
+    padding: 3px 7px;
+    border-radius: 50%;
+    font-size: 12px;
+}
+#apply-leave-section {
+    max-width: 800px;   /* 👈 controls width */
+    width: 90%;
+    /* margin-top: 0px; */
+    margin: 40px auto;  /* 👈 centers horizontally */
+    padding: 30px;
+    border-radius: 12px;
+}
+input, select, textarea {
+    width: 100%;
+}
+
+
+
+/* ===== SECTION STYLING ===== */
+.dashboard-section  {
+    background: rgb(247, 109, 208);
+    background-image: url("formpink.jpeg");
+    background-size: 45% ;
+    background-repeat: no-repeat;
+    background-position: 90% 70%  ;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    
+    
+   
+}
+
+
+.dashboard-content{
+    background-image: none;
+    background-color: rgb(247, 109, 208);
+}
+#home-section {
+background: none;
+background-color:  rgb(247, 109, 208);
+}  
+.approved-leaves .count {
+  font-size: 0;   /* 0 text hide */
+}
+
+P{
+    font-family: bold
+}
+
+
+/* ===== FORM STYLING (LEAVE FORM PAGE) ===== */
+
+
+
+
+
+
+.leave-form {
+    margin-top: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap:20px;
+    flex-wrap: wrap;
+    
+}
+
+
+.form-group {
+    flex: 1;
+    margin-bottom: 15px;
+    
+}
+
+label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 25%;
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #e61994;
+    color: white;
+}
+
+.btn-secondary {
+    background: #ba6297;
+    color: white;
+}
+
+/* ===== STATS CARDS (HOME SECTION) ===== */
+
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 50px;
+    background-image: none;
+    background-color: none;
+   
+   
+}
+
+
+
+.stat-card {
+    background: #e5e7eb;
+    padding: 2px;
+    border-radius: 8px;
+    text-align: center;
+    
+}
+
+/* ===== TABLE (LEAVE HISTORY PAGE) ===== */
+.table-container {
+    overflow-x: auto;
+}
+
+
+table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* ===== MODALS ===== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    background: rgba(212, 61, 151, 0.5);
+}
+
+.modal-content {
+    background: white;
+    width: 50%;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+    
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+}
+
+/* LEAVE HISTORY */
+
+/* ========== GLOBAL & BACKGROUND ========== */
+
+
+
+
+     /* LEAVE HISTORY// */
+
+ 
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: 'Poppins', Arial, sans-serif;
+  /* background: linear-gradient(135deg, #ff7eb3, #6a11cb); */
+  min-height: 100vh;
+  /* padding: 50px 25px; */
+  
+}
+
+/* ========== MAIN CARD CONTAINER ========== */
+#my-leaves-section{
+  background-color:  rgb(247, 109, 208);
+  max-width: 400px;
+  max-height: 500%;
+  margin: 0 auto;
+  padding: 50px 30px;
+  border-radius: 18px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+ 
+/* ========== SECTION HEADER ========== */
+.section-header{
+  display: flex;
+  align-items:left;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 20px;
+} 
+.section-header{
+  justify-content: center;
+}
+
+.section-header h2{
+  color: #4a0e78;
+  font-size: 24px;
+}
+
+.filters{
+  display: flex;
+  align-content: right;
+  gap: 50px;
+  align-items: center;
+}
+
+#statusFilter{
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+#statusFilter:focus{
+  border-color: #6a11cb;
+}
+
+/* ========== BUTTON ========== */
+#refreshLeavesBtn{
+  background: #6a11cb;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#refreshLeavesBtn:hover{
+  background: #4a0e78;
+  transform: translateY(-1px);
+}
+
+/* ========== TABLE CONTAINER (LABEL AREA) ========== */
+.table-container{
+  margin-top: 10px;
+}
+
+#leavesTable{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Make your labels look like clean rows */
+#leavesTable thead h4{
+  font-weight: 600;
+  color: #333;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* ========== MODALS ========== */
+.modal{
+  display: none; /* JS will toggle this */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content{
+  background: rgb(255, 255, 255);
+  width: 90%;
+  max-width: 500px;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.modal-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.modal-header h3{
+  color: #4a0e78;
+}
+
+.close-modal{
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.modal-body{
+  margin-top: 10px;
+}
+.footer-wrapper {
+    background-color: #ffffff;
+    padding: 50px 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    border-top: 1px solid #e5e5e5;
+     justify-content: center;
+}
+
+/* Each Column */
+.footer-wrapper > div {
+    flex: 1;
+    min-width: 220px;
+   
+}
+
+/* Headings */
+.footer-wrapper h4 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+/* List Styling */
+.footer-wrapper ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-wrapper ul li {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #555;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.footer-wrapper ul li:hover {
+    color: #0077ff;
+}
+
+/* Social Links */
+.social-links {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: #555;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    color: #0077ff;
+}
+
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px){
+  .section-header{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filters{
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+@media (max-width: 768px) {
+
+    .footer-wrapper {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .social-links {
+        align-items: center;
+    }
+}
+
+
+    </style>
+    
+
+    <script>
+        // Set min date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('startDate').min = today;
+        document.getElementById('endDate').min = today;
+
+        // Update end date min when start date changes
+        document.getElementById('startDate').addEventListener('change', function() {
+            document.getElementById('endDate').min = this.value;
+        });
+
+        // Fetch stats for dashboard
+        fetch('/leave/my-leaves')
+            .then(res => res.json())
+            .then(leaves => {
+                document.getElementById('pendingCount').textContent = 
+                    leaves.filter(l => l.status.includes('pending')).length;
+                document.getElementById('approvedCount').textContent = 
+                    leaves.filter(l => l.status === 'approved').length;
+                document.getElementById('rejectedCount').textContent = 
+                    leaves.filter(l => l.status === 'rejected').length;
+                document.getElementById('totalCount').textContent = leaves.length;
+            });
+    </script>
+</body>
+</html>

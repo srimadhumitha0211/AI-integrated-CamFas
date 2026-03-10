@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Leave Form</title>
+    <link rel="stylesheet" href="glady.css">
+    
+    
+</head>
+<body>
+    <header style="padding: 10px;">
+        <div class="container">
+            <div class="header-wrapper" >
+                <div class="logo">
+                   <img class="header-image"   src="camfslogo.jpeg" alt="">
+                </div>
+                <nav style="margin-top: 23px;">
+                    <a href="#"> Home</a>
+                    <a href="#">About </a>
+                    <a href="#">Admin</a>
+                    <a href="#">Login</a>
+                </nav>
+                
+            </div>
+        </div>
+    </header>
+
+                <!-- <div class="header-right">
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-count" id="notificationCount">0</span>
+                    </div>
+                    
+                </div>
+            </header> -->
+
+           
+             <!--apply leave section-->
+             <section id="apply-leave-section" class="dashboard-section">
+                 
+                    <div class="section-header" >
+                       
+                        <h2 ><i class="fas fa-file-upload"></i> Apply for Leave</h2>
+                        
+                    </div>
+                    <h3>Fill the form below to apply for leave</h3>
+
+                    <form id="leaveForm" class="leave-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="leaveType"><i class="fas fa-tag"></i> Leave Type</label>
+                                <select id="leaveType" required>
+                                    <option value="">Select leave type</option>
+                                    <option value="medical">Personal Leave</option>
+                                    <option value="personal">Medical Leave</option>
+                                    
+                                    <option value="other">OD</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="startDate"><i class="fas fa-calendar-alt"></i> Start Date</label>
+                                <input type="date" id="startDate" required>
+                           
+                                <label for="endDate"><i class="fas fa-calendar-alt"></i> End Date</label>
+                                <input type="date" id="endDate" required>
+                            </div>
+                        </div>
+                        
+
+                        <div class="form-group">
+                            <label for="reason"><i class="fas fa-comment"></i> Reason </label>
+                            <textarea id="reason" rows="1" required placeholder=" provide your reason  "></textarea>
+                        </div>
+
+                      
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> Submit Application
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="cancelLeaveBtn">
+                                Cancel
+                            </button>
+
+                        </div>
+                    </div>
+                   
+                    </form>
+                
+                </section>
+
+            <div class="dashboard-content">
+                <!-- Home Section -->
+                <section id="home-section" class="dashboard-section active">
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <div class="stat-info">
+                                 <h3 id="approvedCount">0</h3>
+                                <p>Pending :</p>
+                            </div>
+                            
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon approved">
+                                
+                                <i class="fas fa-file-alt"></i>
+                                
+                            </div>
+                            <div class="stat-info">
+                            
+                                <h3 id="approvedCount">0</h3>
+                                <p>Approved Leaves :</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon rejected">
+                                <i class="fas fa-check-circle"></i>
+                                
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="rejectedCount">0</h3>
+                                <p>Rejected Leaves :</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon total">
+                                <i class="fas fa-times-circle"></i>
+                                
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalCount">0</h3>
+                                <p>Total :</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </section>
+                <footer class="footer-wrapper ">
+        <div class="wrapper-1" style="margin-left: 30px;">
+            <h4>Department</h4>
+         <ul>
+          <li>CSE </li>
+          <li>AI & DS </li>
+          <li> EEE</li>
+          <li>ECE</li>
+          <li>MECH</li>
+         </ul>
+        </div>
+        <div class="wrapper-2">
+            <h4>About Us</h4>
+        <ul>
+           <li>Educate </li>
+           <li> Innovate</li>
+           <li> Inspire</li>
+           <li>Lead</li>
+
+        </ul>
+        </div>
+        <div class="wrapper-3">
+            <div>
+            <h4>Contact Us</h4>
+         <ul>
+            <li>Location: Thoothukudi, Tamil Nadu</li>
+           <li>Phone: +91 94432 01279 </li>
+           <li>Email: principal@mtec.ac.in</li>
+           <li> </li>
+         </ul>
+         </div>
+         <div class="social-links">
+         <a href="https://www.instagram.com">🅾 𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦</a>
+         <a href="https://www.facebook.com">𝐟𝐚𝐜𝐞𝐛𝐨𝐨𝐤</a>
+         <a href="https://www.linkedin.com">🏠︎ linkedin</a>
+        </div>
+        </div>
+        <div class="wrapper-4">
+        <h4>Quick Links</h4>
+         <ul>
+        <li>Admissions</li>
+        <li>Academics</li>
+        <li>Examinations</li>
+        <li>Placements</li>
+        <li>Student Portal</li>
+         </ul>
+</div>
+
+
+
+    </footer>
+            </div>
+ </body>  
+</html>

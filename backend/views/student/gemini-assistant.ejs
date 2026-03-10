@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>AI Study Assistant</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6fb;
+padding:40px;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:10px;
+}
+
+.chatbox{
+height:350px;
+overflow-y:auto;
+border:1px solid #ddd;
+padding:15px;
+margin-bottom:15px;
+}
+
+.message{
+margin-bottom:10px;
+}
+
+.user{
+color:blue;
+}
+
+.ai{
+color:green;
+}
+
+input{
+width:80%;
+padding:10px;
+}
+
+button{
+padding:10px 15px;
+background:#007bff;
+color:white;
+border:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🤖 AI Study Assistant</h2>
+
+<div class="chatbox" id="chatbox"></div>
+
+<input id="message" placeholder="Ask something...">
+
+<button onclick="sendMessage()">Send</button>
+
+</div>
+
+<script>
+
+async function sendMessage(){
+
+const messageInput=document.getElementById("message");
+const chatbox=document.getElementById("chatbox");
+
+const message=messageInput.value;
+
+chatbox.innerHTML+=`<div class="message user"><b>You:</b> ${message}</div>`;
+
+messageInput.value="";
+
+const res=await fetch("/gemini/chat",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({message})
+
+});
+
+const data=await res.json();
+
+if(data.success){
+
+chatbox.innerHTML+=`<div class="message ai"><b>AI:</b> ${data.answer}</div>`;
+
+}else{
+
+chatbox.innerHTML+=`<div class="message ai"><b>AI:</b> Error getting response</div>`;
+
+}
+
+chatbox.scrollTop=chatbox.scrollHeight;
+
+}
+
+</script>
+
+</body>
+</html>

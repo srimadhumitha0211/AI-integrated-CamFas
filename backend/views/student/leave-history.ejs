@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave History</title>
+    <link rel="stylesheet" href="glady.css">
+    <style>
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        .status-pending { color: #ff9800; }
+        .status-approved { color: #4caf50; }
+        .status-rejected { color: #f44336; }
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <header style="padding: 10px;">
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="logo">
+                   <img class="header-image" src="/images/camfslogo.jpeg" alt="">
+                </div>
+                <nav style="margin-top: 23px;">
+                    <a href="/student/dashboard">Home</a>
+                    <a href="/student/leave-form">Apply Leave</a>
+                    <a href="/student/leave-history">History</a>
+                    <a href="/auth/logout">Logout</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 style="margin-top: 30px;">My Leave History</h1>
+        
+        <div class="filters">
+            <select id="statusFilter" style="padding: 8px;">
+                <option value="all">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+            </select>
+            <button id="refreshBtn" style="padding: 8px 16px;">Refresh</button>
+        </div>
+
+        <div class="table-container">
+            <table id="leavesTable">
+                <thead>
+                    <tr>
+                        <th>Applied On</th>
+                        <th>Leave Type</th>
+                        <th>Dates</th>
+                        <th>Days</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                        <th>Teacher Comment</th>
+                        <th>HOD Comment</th>
+                    </tr>
+                </thead>
+                <tbody id="leavesTableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function loadLeaves() {
+            const response = await fetch('/leave/my-leaves');
+            const leaves = await response.json();
+            const filter = document.getElementById('statusFilter').value;
+            
+            let filteredLeaves = leaves;
+            if (filter !== 'all') {
+                filteredLeaves = leaves.filter(leave => 
+                    filter === 'pending' ? leave.status.includes('pending') : leave.status === filter
+                );
+            }
+            
+            const tbody = document.getElementById('leavesTableBody');
+            tbody.innerHTML = '';
+            
+            filteredLeaves.forEach(leave => {
+                const row = tbody.insertRow();
+                const start = new Date(leave.startDate).toLocaleDateString();
+                const end = new Date(leave.endDate).toLocaleDateString();
+                const applied = new Date(leave.appliedAt).toLocaleDateString();
+                const days = Math.ceil((new Date(leave.endDate) - new Date(leave.startDate)) / (1000*60*60*24)) + 1;
+                
+                let statusClass = '';
+                if (leave.status.includes('pending')) statusClass = 'status-pending';
+                else if (leave.status === 'approved') statusClass = 'status-approved';
+                else if (leave.status === 'rejected') statusClass = 'status-rejected';
+                
+                row.innerHTML = `
+                    <td>${applied}</td>
+                    <td>${leave.leaveType}</td>
+                    <td>${start} to ${end}</td>
+                    <td>${days}</td>
+                    <td>${leave.reason}</td>
+                    <td class="${statusClass}">${leave.status}</td>
+                    <td>${leave.teacherComment || '-'}</td>
+                    <td>${leave.hodComment || '-'}</td>
+                `;
+            });
+        }
+        
+        document.getElementById('refreshBtn').addEventListener('click', loadLeaves);
+        document.getElementById('statusFilter').addEventListener('change', loadLeaves);
+        
+        // Load leaves on page load
+        loadLeaves();
+    </script>
+</body>
+</html>

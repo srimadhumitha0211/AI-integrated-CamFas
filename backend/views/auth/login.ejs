@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Leave System</title>
+   <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<div class="main-wrapper">
+
+    <!-- LEFT SIDE: LOGIN FORM -->
+    <div class="form-section">
+        <h2>Login to Leave System</h2>
+
+        <form action="/auth/login" method="POST">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+
+            <div class="role-selector">
+                <label>
+                    <input type="radio" name="role" value="student" checked> Student
+                </label>
+                <label>
+                    <input type="radio" name="role" value="teacher"> Teacher
+                </label>
+                <label>
+                    <input type="radio" name="role" value="hod"> HOD
+                </label>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p>Don't have an account? <a href="/register">Register here</a></p>
+    </div>
+
+    <!-- RIGHT SIDE: IMAGE -->
+    <div class="image-section">
+        <img src="login-img.jpeg" alt="Login Illustration">
+    </div>
+
+</div>
+
+
+<style>
+
+    * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e6c7ff, #f3dcff, #ffd6ff);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-wrapper {
+            display: flex;
+            width: 80%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* LEFT FORM SECTION */
+        .form-section {
+            
+            flex: 1;
+            padding: 30px;
+        }
+
+        h2 {
+            color: #4a148c;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #c8a2ff;
+            outline: none;
+            font-size: 14px;
+            background: #f8f2ff;
+        }
+
+        input:focus {
+            border-color: #7b1fa2;
+            box-shadow: 0 0 5px rgba(123, 31, 162, 0.3);
+        }
+
+        /* RESPONSIVE LABELS */
+        .role-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+            color: #4a148c;
+            font-size: 14px;
+        }
+
+        .role-selector label {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 8px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex: 1;
+            justify-content: center;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .role-selector label:hover {
+            background: #f1e6ff;
+        }
+
+        /* RESPONSIVE BUTTON */
+        button {
+            width: 100%;
+            background: linear-gradient(90deg, #8e24aa, #ba68c8);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(142, 36, 170, 0.3);
+        }
+
+        p {
+            text-align: center;
+            font-size: 14px;
+            color: #4a148c;
+        }
+
+        a {
+            color: #7b1fa2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        
+.image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: transparent; /* removed dark background */
+}
+
+.image-section img {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 20px;
+}
+
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .main-wrapper {
+                flex-direction: column;
+                width: 90%;
+            }
+
+            .image-section {
+                padding: 15px;
+            }
+
+            .image-section img {
+                width: 60%;
+            }
+        }
+</style>
+
+</body>
+</html>

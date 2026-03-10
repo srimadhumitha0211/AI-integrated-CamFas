@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HOD Dashboard</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .actions button { margin: 5px; padding: 8px 15px; cursor: pointer; }
+        .approve-btn { background: #28a745; color: white; border: none; }
+        .reject-btn { background: #dc3545; color: white; border: none; }
+    </style>
+</head>
+<body>
+    <h1>HOD Dashboard - <%= user.name %></h1>
+    <p>Department: <%= user.department %></p>
+    <a href="/auth/logout">Logout</a>
+    
+    <h2>Leave Applications</h2>
+    <table id="hodTable">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Type</th>
+                <th>Dates</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td colspan="6">Loading...</td></tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 40px;">
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #007bff; padding-bottom: 10px;">📝 Pending Internship Reviews</h2>
+    
+    <div id="pendingReviewsContainer">
+        <!-- Reviews will be loaded here -->
+        <p style="text-align: center; color: #7f8c8d;">Loading pending reviews...</p>
+    </div>
+</div>
+
+    <script>
+        // Simple JavaScript without complex template literals
+        async function loadLeaves() {
+            try {
+                const response = await fetch('/api/pending-hod-leaves');
+                const leaves = await response.json();
+                const tbody = document.querySelector('#hodTable tbody');
+                tbody.innerHTML = '';
+                
+                leaves.forEach(leave => {
+                    const row = tbody.insertRow();
+                    const start = new Date(leave.startDate).toLocaleDateString();
+                    const end = new Date(leave.endDate).toLocaleDateString();
+                    
+                    row.innerHTML = '<td>' + leave.studentName + '</td>' +
+                                    '<td>' + leave.leaveType + '</td>' +
+                                    '<td>' + start + ' to ' + end + '</td>' +
+                                    '<td>' + leave.reason + '</td>' +
+                                    '<td>' + leave.status + '</td>' +
+                                    '<td><button onclick="approve(\'' + leave._id + '\')">Approve</button>' +
+                                    '<button onclick="reject(\'' + leave._id + '\')">Reject</button></td>';
+                });
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+        
+        function approve(id) {
+            if (confirm('Approve this leave?')) {
+                fetch('/approval/hod/' + id, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({action: 'approve', comment: ''})
+                }).then(() => loadLeaves());
+            }
+        }
+        
+        function reject(id) {
+            if (confirm('Reject this leave?')) {
+                fetch('/approval/hod/' + id, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({action: 'reject', comment: ''})
+                }).then(() => loadLeaves());
+            }
+        }
+        
+        loadLeaves();
+
+
+   async function loadPendingReviews() {
+    const container = document.getElementById('pendingReviewsContainer');
+    container.innerHTML = '<p style="text-align: center; color: #7f8c8d;">Loading pending reviews...</p>';
+    
+    try {
+        // Add credentials: 'include' to send cookies with fetch
+        const response = await fetch('/reviews/pending', {
+            credentials: 'include', // This is CRITICAL for sending session cookies
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        const contentType = response.headers.get('content-type');
+        
+        if (!response.ok) {
+            if (contentType && contentType.includes('application/json')) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || `Error ${response.status}`);
+            } else {
+                const text = await response.text();
+                console.log('Received HTML response:', text.substring(0, 200));
+                
+                // Check if we're actually logged in by calling debug endpoint
+                const sessionCheck = await fetch('/debug-session', {
+                    credentials: 'include'
+                });
+                const sessionData = await sessionCheck.json();
+                console.log('Current session:', sessionData);
+                
+                if (!sessionData.userId) {
+                    container.innerHTML = `
+                        <div style="background: #fff3cd; color: #856404; padding: 20px; border-radius: 5px; text-align: center;">
+                            <p>⚠️ You are not logged in.</p>
+                            <button onclick="window.location.href='/'" 
+                                    style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px;">
+                                Go to Login
+                            </button>
+                        </div>
+                    `;
+                } else if (sessionData.role !== 'hod' && sessionData.role !== 'teacher') {
+                    container.innerHTML = `
+                        <div style="background: #fff3cd; color: #856404; padding: 20px; border-radius: 5px; text-align: center;">
+                            <p>⚠️ You are logged in as <strong>${sessionData.role}</strong>.</p>
+                            <p>Only HOD or Teacher can approve reviews.</p>
+                            <button onclick="window.location.href='/auth/logout'" 
+                                    style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px;">
+                                Logout
+                            </button>
+                            <button onclick="window.location.href='/'" 
+                                    style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px;">
+                                Login as HOD
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    container.innerHTML = `
+                        <div style="background: #f8d7da; color: #721c24; padding: 20px; border-radius: 5px; text-align: center;">
+                            <p>❌ You are logged in as ${sessionData.role} but still getting HTML response.</p>
+                            <p>Session ID: ${sessionData.sessionID}</p>
+                            <button onclick="window.location.reload()" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                                Refresh Page
+                            </button>
+                        </div>
+                    `;
+                }
+                return;
+            }
+        }
+        
+        const reviews = await response.json();
+        console.log('Pending reviews:', reviews);
+        
+        // ... rest of display code
+       
+if (!reviews || reviews.length === 0) {
+    container.innerHTML = `
+        <div style="text-align:center; padding:20px; color:#7f8c8d;">
+            ✅ No pending reviews.
+        </div>
+    `;
+    return;
+}
+
+container.innerHTML = '';
+
+reviews.forEach(review => {
+    const div = document.createElement('div');
+    div.style = "border:1px solid #ddd; padding:20px; margin-bottom:20px; border-radius:8px; background:#f9f9f9;";
+
+    const formattedDate = new Date(review.postedAt).toLocaleDateString();
+
+    div.innerHTML = `
+        <h3>${review.studentName} - ${review.companyName}</h3>
+        <p><strong>Position:</strong> ${review.position}</p>
+        <p><strong>Duration:</strong> ${review.internshipDuration}</p>
+        <p><strong>Stipend:</strong> ${review.stipend}</p>
+        <p><strong>Skills:</strong> ${review.skills}</p>
+        <p><strong>Rating:</strong> ⭐ ${review.rating}/5</p>
+        <p><strong>Review:</strong> ${review.review}</p>
+        <p><small>Posted on: ${formattedDate}</small></p>
+
+        <button onclick="approveReview('${review._id}')">Approve</button>
+        <button onclick="rejectReview('${review._id}')">Reject</button>
+    `;
+
+    container.appendChild(div);
+});
+    } catch (error) {
+        console.error('Error loading pending reviews:', error);
+        container.innerHTML = `
+            <div style="color: #dc3545; padding: 20px; text-align: center; background: #f8d7da; border-radius: 5px;">
+                <p>❌ Error: ${error.message}</p>
+                <button onclick="checkLoginStatus()" style="margin-top: 10px; padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    Check Login Status
+                </button>
+            </div>
+        `;
+    }
+}
+
+// Enhanced login check
+async function checkLoginStatus() {
+    try {
+        // Use the simple endpoint first to test JSON
+        const testResponse = await fetch('/simple-json-test', {
+            credentials: 'include'
+        });
+        
+        if (!testResponse.ok) {
+            throw new Error(`HTTP error! status: ${testResponse.status}`);
+        }
+        
+        const testData = await testResponse.json();
+        console.log('Simple JSON test:', testData);
+        
+        // Now try the session check
+        const response = await fetch('/simple-session-check', {
+            credentials: 'include'
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('Session data:', data);
+        
+        // Show readable message
+        const statusMessage = `
+📊 LOGIN STATUS:
+• Logged in: ${data.userId ? '✅ YES' : '❌ NO'}
+• User Role: ${data.role || 'None'}
+• User ID: ${data.userId || 'None'}
+• Session exists: ${data.sessionExists ? '✅' : '❌'}
+        `;
+        
+        alert(statusMessage);
+        
+        // Update UI
+        const container = document.getElementById('pendingReviewsContainer');
+        if (!data.userId) {
+            container.innerHTML = `
+                <div style="background: #fff3cd; color: #856404; padding: 30px; border-radius: 5px; text-align: center;">
+                    <h3>🔐 Not Logged In</h3>
+                    <p>You need to login as HOD to see pending reviews.</p>
+                    <button onclick="window.location.href='/'" 
+                            style="background: #007bff; color: white; border: none; padding: 12px 24px; border-radius: 5px; cursor: pointer; font-size: 16px;">
+                        Go to Login Page
+                    </button>
+                </div>
+            `;
+        } else if (data.role !== 'hod' && data.role !== 'teacher') {
+            container.innerHTML = `
+                <div style="background: #f8d7da; color: #721c24; padding: 30px; border-radius: 5px; text-align: center;">
+                    <h3>⛔ Access Denied</h3>
+                    <p>You are logged in as <strong>${data.role}</strong>.</p>
+                    <p>Only HOD or Teacher can approve reviews.</p>
+                    <button onclick="window.location.href='/auth/logout'" 
+                            style="background: #dc3545; color: white; border: none; padding: 12px 24px; border-radius: 5px; cursor: pointer; margin: 5px;">
+                        Logout
+                    </button>
+                    <button onclick="window.location.href='/'" 
+                            style="background: #007bff; color: white; border: none; padding: 12px 24px; border-radius: 5px; cursor: pointer; margin: 5px;">
+                        Login as HOD
+                    </button>
+                </div>
+            `;
+        } else {
+            // Logged in correctly
+            container.innerHTML = '<p style="text-align: center;">✅ Logged in successfully. Loading reviews...</p>';
+            loadPendingReviews();
+        }
+        
+    } catch (error) {
+        console.error('Status check failed:', error);
+        
+        // Try to get the actual HTML response for debugging
+        try {
+            const errorResponse = await fetch('/simple-session-check');
+            const errorText = await errorResponse.text();
+            console.log('Error response HTML:', errorText.substring(0, 200));
+        } catch (e) {
+            console.log('Could not get error response');
+        }
+        
+        alert('❌ Error: ' + error.message + '\n\nCheck console for details (F12)');
+    }
+}
+
+async function approveReview(reviewId) {
+    if (confirm('Approve this review to show it to all students?')) {
+        try {
+            const response = await fetch(`/reviews/approve/${reviewId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            
+            if (response.ok) {
+                alert('✅ Review approved and published!');
+                loadPendingReviews(); // Refresh the list
+            }
+        } catch (error) {
+            console.error('Error approving review:', error);
+        }
+    }
+}
+
+async function rejectReview(reviewId) {
+    if (confirm('Reject this review?')) {
+        try {
+            const response = await fetch(`/reviews/reject/${reviewId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            
+            if (response.ok) {
+                alert('❌ Review rejected');
+                loadPendingReviews(); // Refresh the list
+            }
+        } catch (error) {
+            console.error('Error rejecting review:', error);
+        }
+    }
+}
+
+// Load pending reviews when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    loadPendingReviews();
+});
+
+
+    </script>
+</body>
+</html>

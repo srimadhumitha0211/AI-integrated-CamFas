@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher Dashboard</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 10px; }
+        .pending { background: #fff3cd; }
+        .actions button { margin: 5px; padding: 5px 10px; }
+    </style>
+</head>
+<body>
+    <h1>Teacher Dashboard - <%= user.name %></h1>
+    <a href="/auth/logout">Logout</a>
+    
+    <h2>Pending Approvals</h2>
+    <table id="pendingTable">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Leave Type</th>
+                <th>Dates</th>
+                <th>Reason</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be loaded here -->
+        </tbody>
+    </table>
+
+    <script>
+        fetch('/api/pending-leaves?role=teacher')
+            .then(res => res.json())
+            .then(leaves => {
+                const tbody = document.querySelector('#pendingTable tbody');
+                leaves.forEach(leave => {
+                    const row = tbody.insertRow();
+                    row.innerHTML = `
+                        <td>${leave.studentName}</td>
+                        <td>${leave.leaveType}</td>
+                        <td>${new Date(leave.startDate).toLocaleDateString()} to ${new Date(leave.endDate).toLocaleDateString()}</td>
+                        <td>${leave.reason}</td>
+                        <td class="actions">
+                            <button onclick="approveLeave('${leave._id}')">Approve</button>
+                            <button onclick="rejectLeave('${leave._id}')">Reject</button>
+                            <input type="text" id="comment-${leave._id}" placeholder="Comment">
+                        </td>
+                    `;
+                });
+            });
+
+        function approveLeave(id) {
+            const comment = document.getElementById(`comment-${id}`).value;
+            fetch(`/approval/teacher/${id}`, {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({action:'approve', comment})
+            }).then(() => location.reload());
+        }
+
+        function rejectLeave(id) {
+            const comment = document.getElementById(`comment-${id}`).value;
+            fetch(`/approval/teacher/${id}`, {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({action:'reject', comment})
+            }).then(() => location.reload());
+        }
+    </script>
+</body>
+</html>

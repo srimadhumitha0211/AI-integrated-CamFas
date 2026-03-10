@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Leave History</title>
+    <link rel="stylesheet" href="glady.css">
+    
+   
+</head>
+<body>
+    <header style="padding: 10px;">
+        <div class="container">
+            <div class="header-wrapper" >
+                <div class="logo">
+                   <img class="header-image"   src="camfslogo.jpeg" alt="">
+                </div>
+                <nav style="margin-top: 23px;">
+                    <a href="#"> Home</a>
+                    <a href="#">About </a>
+                    <a href="#">Admin</a>
+                    <a href="#">Login</a>
+                </nav>
+                
+            </div>
+        </div>
+    </header>
+                <!-- My Leaves Section -->
+                <section id="my-leaves-section" class="dashboard">
+                    <div class="section-header">
+                        <h2><i class="fas fa-history"></i> My Leave History</h2>
+                        <div class="filters">
+                            <select id="statusFilter" style="margin-bottom: 20px;">
+                                <option value="all">All Status</option>
+                                <option value="pending">Pending</option>
+                                <option value="teacher-approved">Teacher Approved</option>
+                                <option value="hod-approved">HOD Approved</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                            <button class="btn btn-secondary" id="refreshLeavesBtn" style="margin-bottom: 20px;">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-container" >
+                        <table id="leavesTable">
+                            <thead>
+                                <tr>
+                                    <h4>Application ID :</h4>
+                                    <h4>Applied On :</h4>
+                                    <h4>Leave Dates :</h4>
+                                    <h4>Type :</h4>
+                                    <h4>Days :</h4>
+                                    <h4>Status :</h4>
+                                    <h4>Teacher Comment :</h4>
+                                    <h4>HOD Comment :</h4>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody id="leavesTableBody">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Profile Section -->
+                
+            <!-- Notification Modal -->
+            <div id="notificationModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-bell"></i> Notifications</h3>
+                        <span class="close-modal">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div id="notificationsList">
+                            <!-- Notifications will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leave Details Modal -->
+            <div id="leaveDetailsModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-file-alt"></i> Leave Application Details</h3>
+                        <span class="close-modal">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div id="leaveDetailsContent">
+                            <!-- Leave details will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-wrapper " style="margin-top: 30px;">
+        <div class="wrapper-1" style="margin-left: 30px;">
+            <h4>Department</h4>
+         <ul>
+          <li>CSE </li>
+          <li>AI & DS </li>
+          <li> EEE</li>
+          <li>ECE</li>
+          <li>MECH</li>
+         </ul>
+        </div>
+        <div class="wrapper-2">
+            <h4>About Us</h4>
+        <ul>
+           <li>Educate </li>
+           <li> Innovate</li>
+           <li> Inspire</li>
+           <li>Lead</li>
+
+        </ul>
+        </div>
+        <div class="wrapper-3">
+            <div>
+            <h4>Contact Us</h4>
+         <ul>
+            <li>Location: Thoothukudi, Tamil Nadu</li>
+           <li>Phone: +91 94432 01279 </li>
+           <li>Email: principal@mtec.ac.in</li>
+           <li> </li>
+         </ul>
+         </div>
+         <div class="social-links">
+         <a href="https://www.instagram.com">🅾 𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦</a>
+         <a href="https://www.facebook.com">𝐟𝐚𝐜𝐞𝐛𝐨𝐨𝐤</a>
+         <a href="https://www.linkedin.com">🏠︎ linkedin</a>
+        </div>
+        </div>
+        <div class="wrapper-4">
+        <h4>Quick Links</h4>
+         <ul>
+        <li>Admissions</li>
+        <li>Academics</li>
+        <li>Examinations</li>
+        <li>Placements</li>
+        <li>Student Portal</li>
+         </ul>
+</div>
+
+
+
+    </footer>
+
+    <script src="js/student.js"></script>
+</body>
+</html>
