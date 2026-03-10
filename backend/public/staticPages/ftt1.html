@@ -17,14 +17,23 @@
 /* Body Layout */
 body {
   font-family: Arial, sans-serif;
- 
-     background-color: #efb6e6b5;
+  background: linear-gradient(135deg, #e6c7ff, #f3dcff, #ffd6ff);
+    
   display: flex;
   flex-direction: column;   /* stack elements vertically */
   align-items: center;      /* center horizontally */
   min-height: 100vh;
-  padding-top: 100px;       /* space for fixed title */
-  padding-bottom: 40px;
+  
+}
+
+ html, body{
+    margin:0;
+    padding:0;
+} 
+.container{
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
 }
 
 
@@ -34,6 +43,9 @@ body {
         backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.25);
         padding: 14px 0;
+         margin: 0%;
+        width: 100%;
+       
         
     }
 
@@ -61,9 +73,12 @@ body {
     .logo-text h1 {
         font-size: 20px;
         color: #330e43;
+         margin-top: 0;
+        text-align: left;
+        padding-bottom: 10px;
     }
 
-    .logo-text span {
+    .logo-text p{
         font-size: 12px;
         /* color: #f1f1f1; */
         color: #330e43;
@@ -91,35 +106,32 @@ body {
 
 
 
-
 /* Fixed Title */
 h2 {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: black;
+ text-align: center;
+  margin-bottom: 20px;
+   color: #2a0b30;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 /* Timetable Container */
 .timetable-container {
   background: rgba(230, 125, 200, 0.334);
-  padding: 25px;
+  padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   width: 95%;
-  max-width: 1000px;
+  max-width: 1200px;
   overflow-x: auto;
-  margin-top: 20px;   /* gap between title and table */
+  margin:20px auto  /* gap between title and table */
 }
 
 /* Table Styling */
 table {
   width: 100%;
+  min-height: 900px;
   border-collapse: collapse;
   text-align: center;
   background: rgba(255, 255, 255, 0.1);
@@ -132,6 +144,7 @@ th, td {
   padding: 12px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   word-wrap: break-word;
+   overflow-wrap: break-word;
   white-space: normal;
 }
 
@@ -139,6 +152,7 @@ th, td {
 th {
   background: rgba(255, 255, 255, 0.3);
   font-weight: bold;
+  font-size: 0.9rem;
 }
 
 /* Break Rows */
@@ -150,19 +164,21 @@ th {
 /* Responsive Design */
 @media (max-width: 768px) {
 
-   .header-flex {
-        flex-direction: column;
-        gap: 15px;
-    }
+ .header-flex{ 
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center;
+     gap: 10px;
+   }
+    .nav-buttons{ 
+      flex-wrap: wrap; 
+      justify-content: center;
+       gap: 10px; 
+      }
 
-    .nav-buttons {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-  body {
+  /* body {
     padding-top: 120px;
-  }
+  } */
 
   th, td {
     padding: 8px;
@@ -203,9 +219,9 @@ th {
     </header>
 
 
-<h2>MISS.V.PAVITHA</h2>
 
 <div class="timetable-container">
+    <h2>MISS.V.PAVITHA</h2>
 <table>
     <tr>
         <th>Period</th>
@@ -311,3 +327,4 @@ th {
 </div>
 </body>
 </html>
+

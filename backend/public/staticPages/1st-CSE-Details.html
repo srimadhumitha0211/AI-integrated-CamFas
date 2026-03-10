@@ -27,7 +27,7 @@
         }
 
         .container{
-    width: 90%;
+    width: 95%;
     max-width: 1200px;
     margin: auto;
 }
@@ -38,13 +38,14 @@
         backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.25);
         padding: 14px 0;
+        margin: 0%;
         width: 100%;
     }
 
     .header-flex {
-        max-width: 1200px;
+        /* max-width: 1200px;
         margin: auto;
-        padding: 0 40px;
+        padding: 0 40px; */
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -55,7 +56,7 @@
         display: flex;
         align-items: center;
         gap: 12px;
-        font-size: 16px;
+        /* font-size: 16px; */
     }
 
     .logo-box img {
@@ -69,6 +70,9 @@
     .logo-text h1 {
         font-size: 20px;
         color: #330e43;
+        margin-top: 0;
+        text-align: left;
+        padding-bottom: 10px;
     }
 
     .logo-text p {
@@ -252,7 +256,8 @@
 
         /* RESPONSIVE */
         @media (max-width: 900px) {
-            .header-flex{ flex-direction: column;
+            .header-flex{ 
+                flex-direction: column;
                  align-items: center; 
                  text-align: center;
                   gap: 10px;

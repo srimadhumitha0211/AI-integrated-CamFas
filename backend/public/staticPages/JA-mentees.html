@@ -8,13 +8,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
     <style>
+        
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
         body {
             margin: 0;
-            padding: 20px;
+            
             font-family: Arial, sans-serif;
            /* background: linear-gradient(135deg, #d5abf7, #dbbcec, #de8ede); */
-            background-color: #efb6e6a1;
+            background: linear-gradient(135deg, #e6c7ff, #f3dcff, #ffd6ff);
         }
+         .container{
+    width:100%;
+    max-width:1100px;
+    margin:auto;
+}
 
         /* HEADER */
     header {
@@ -22,6 +35,10 @@
         backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.25);
         padding: 14px 0;
+        
+        margin-bottom: 20px;
+        
+    
         
     }
 
@@ -80,7 +97,6 @@
 
 
 
-
         h2 {
             text-align: center;
             color: black;
@@ -125,14 +141,19 @@
         }
 
         @media(max-width: 768px){
-             .header-flex {
+
+              .header-flex {
+                
         flex-direction: column;
-        gap: 15px;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
     }
 
-    .nav-buttons {
+    .nav-buttons{
         flex-wrap: wrap;
         justify-content: center;
+        gap: 10px;
     }
         }
     </style>
@@ -163,7 +184,6 @@
 
         </div>
     </header>
-
 
 <h2>II CSE - A Student List</h2>
 
