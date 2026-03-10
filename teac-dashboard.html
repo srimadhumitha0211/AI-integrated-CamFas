@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="glady.css">
+</head>
+<body>
+    
+     <header>
+        <div class="container header-flex">
+
+            <!-- LOGO + NAME -->
+            <div class="logo-box">
+                <img src="cse-bg-img/logo.jpeg">
+                <div class="logo-text">
+                    <h1>CAMFAS</h1>
+                    <p>Simplifying Campus Life for Faculty and Students</p>
+                </div>
+            </div>
+
+            
+
+            <!-- NAV -->
+            <nav class="nav-buttons">
+                <a href="#" class="nav-btn">Login</a>
+                <a href="#departments" class="nav-btn">Departments</a>
+                <a href="mainAbout.html" class="nav-btn">About Us</a>
+                <a href="#contact" class="nav-btn">Contact</a>
+            </nav>
+
+        </div>
+    </header>
+            <div>
+                    <nav class="sidebar-nav">
+                <a href="#" class="nav-link active" data-section="home">
+                    <i class="fas fa-home"></i> Return to Home
+                </a>
+                <a href="leave-form.html" class="nav-link" data-section="apply-leave">
+                    <i class="fas fa-file-upload"></i> Apply for Leave
+                </a>
+                <a href="leave-history.html" class="nav-link" data-section="my-leaves">
+                    <i class="fas fa-history"></i> My Leave History
+                </a>
+                </nav>
+            </div>
+            
+
+
+<div class="dashboard-content">
+
+    <h2>Welcome, <%= user.name %>!</h2>
+
+    
+
+
+    <!-- STATS CARDS (NOW AT BOTTOM) -->
+    <div class="stats-cards">
+        <div class="stat-card">
+            <h3 id="pendingCount">0</h3>
+            <p>Pending Leaves</p>
+        </div>
+
+        <div class="stat-card">
+            <h3 id="approvedCount">0</h3>
+            <p>Approved Leaves</p>
+        </div>
+
+        <div class="stat-card">
+            <h3 id="rejectedCount">0</h3>
+            <p>Rejected Leaves</p>
+        </div>
+
+        <div class="stat-card">
+            <h3 id="totalCount">0</h3>
+            <p>Total Applications</p>
+        </div>
+    </div>
+
+</div>
+
+
+    <!-- Internship Reviews Section -->
+<div class="reviews-section">
+    <h2 style="color: #2c3e50; margin-bottom: 20px;">💼 Internship Reviews Portal</h2>
+    
+    <!-- Tab Buttons -->
+    <div class="tab-buttons">
+        <button class="tab-btn active" onclick="showTab('all-reviews')">All Reviews</button>
+        <button class="tab-btn" onclick="showTab('my-reviews')">My Reviews</button>
+        <button class="tab-btn" onclick="showTab('post-review')">Post Review</button>
+    </div>
+    
+    <!-- Tab 1: All Reviews -->
+    <div id="all-reviews" class="tab-content">
+        <div style="margin-bottom: 15px;">
+            <input type="text" id="searchCompany" placeholder="Search company..." style="padding: 8px; width: 300px; border: 1px solid #ddd; border-radius: 5px;">
+            <button onclick="searchReviews()" style="padding: 8px 16px; background: rgb(203, 103, 200); color: white; border: none; border-radius: 5px;">Search</button>
+        </div>
+        <div id="allReviewsContainer">
+            <!-- Reviews will be loaded here -->
+            <p style="text-align: center; color: #7f8c8d;">Loading reviews...</p>
+        </div>
+    </div>
+    
+    <!-- Tab 2: My Reviews -->
+    <div id="my-reviews" class="tab-content" style="display: none;">
+        <div id="myReviewsContainer">
+            <!-- My reviews will be loaded here -->
+            <p style="text-align: center; color: #7f8c8d;">Loading your reviews...</p>
+        </div>
+    </div>
+    
+    <!-- Tab 3: Post Review Form -->
+    <div id="post-review" class="tab-content" style="display: none;">
+        <div class="review-form">
+            <h3 style="margin-bottom: 20px;">✍️ Share Your Internship Experience</h3>
+            
+            <form action="/reviews/submit" method="POST">
+                <div class="form-row">
+                    <div>
+                        <label>Company Name *</label>
+                        <input type="text" name="companyName" required placeholder="e.g., Google, Microsoft">
+                    </div>
+                    <div>
+                        <label>Position *</label>
+                        <input type="text" name="position" required placeholder="e.g., Software Intern">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div>
+                        <label>Internship Duration *</label>
+                        <input type="text" name="internshipDuration" required placeholder="e.g., 3 months">
+                    </div>
+                    <div>
+                        <label>Stipend (Optional)</label>
+                        <input type="text" name="stipend" placeholder="e.g., ₹20,000/month">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div>
+                        <label>Rating *</label>
+                        <select name="rating" required>
+                            <option value="">Select rating</option>
+                            <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                            <option value="4">⭐⭐⭐⭐ Very Good</option>
+                            <option value="3">⭐⭐⭐ Good</option>
+                            <option value="2">⭐⭐ Fair</option>
+                            <option value="1">⭐ Poor</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Skills Learned</label>
+                        <input type="text" name="skills" placeholder="e.g., React, Node.js, Python">
+                    </div>
+                </div>
+                
+                <div>
+                    <label>Your Review *</label>
+                    <textarea name="review" rows="4" required placeholder="Share your experience..."></textarea>
+                </div>
+                
+                <button type="submit" >
+                    📤 Submit Review
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+    <script>
+        // Fetch stats from API
+        fetch('/leave/my-leaves')
+            .then(res => res.json())
+            .then(leaves => {
+                document.getElementById('pendingCount').textContent = 
+                    leaves.filter(l => l.status.includes('pending')).length;
+                document.getElementById('approvedCount').textContent = 
+                    leaves.filter(l => l.status === 'approved').length;
+                document.getElementById('rejectedCount').textContent = 
+                    leaves.filter(l => l.status === 'rejected').length;
+                document.getElementById('totalCount').textContent = leaves.length;
+            });
+
+            function showTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.style.display = 'none';
+    });
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    document.getElementById(tabId).style.display = 'block';
+    event.target.classList.add('active');
+    
+    // Load data based on tab
+    if (tabId === 'all-reviews') loadAllReviews();
+    if (tabId === 'my-reviews') loadMyReviews();
+}
+
+// Load all approved reviews
+async function loadAllReviews() {
+    try {
+        const response = await fetch('/reviews/all');
+        const reviews = await response.json();
+        
+        const container = document.getElementById('allReviewsContainer');
+        
+        if (reviews.length === 0) {
+            container.innerHTML = '<p style="text-align: center; color: #7f8c8d;">No reviews yet. Be the first to share!</p>';
+            return;
+        }
+        
+        container.innerHTML = reviews.map(review => `
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="company-name">${review.companyName}</span>
+                    <span class="rating">${'⭐'.repeat(review.rating)}</span>
+                </div>
+                <div class="review-meta">
+                    <span>👤Name: ${review.studentName} | 💼Designation: ${review.position} | 📅Posted date: ${new Date(review.postedAt).toLocaleDateString()}</span>
+                </div>
+                <div class="review-content">
+                    Review about internship:${review.review}
+                </div>
+                <div style="margin-top: 10px;">
+                    <span class="stipend-badge">💰Stipend: ${review.stipend || 'Unpaid'}</span>
+                    <span class="stipend-badge">⏱️Duration: ${review.internshipDuration}</span>
+                </div>
+                <div class="skills-tags">
+                   Skills gained: ${review.skills ? review.skills.split(',').map(skill => 
+                        `<span class="skill-tag">🔹 ${skill.trim()}</span>`
+                    ).join('') : ''}
+                </div>
+            </div>
+        `).join('');
+        
+    } catch (error) {
+        console.error('Error loading reviews:', error);
+    }
+}
+
+// Load current user's reviews
+async function loadMyReviews() {
+    try {
+        const response = await fetch('/reviews/my-reviews');
+        const reviews = await response.json();
+        
+        const container = document.getElementById('myReviewsContainer');
+        
+        if (reviews.length === 0) {
+            container.innerHTML = '<p style="text-align: center; color: #7f8c8d;">You haven\'t posted any reviews yet.</p>';
+            return;
+        }
+        
+        container.innerHTML = reviews.map(review => `
+            <div class="review-card" style="border-left: 4px solid ${review.isApproved ? '#28a745' : '#ffc107'}">
+                <div class="review-header">
+                    <span class="company-name">${review.companyName}</span>
+                    <span class="rating">${'⭐'.repeat(review.rating)}</span>
+                </div>
+                <div class="review-meta">
+                    <span>Status: ${review.isApproved ? '✅ Approved' : '⏳ Pending Approval'}</span>
+                </div>
+                <div class="review-content">
+                    ${review.review}
+                </div>
+            </div>
+        `).join('');
+        
+    } catch (error) {
+        console.error('Error loading my reviews:', error);
+    }
+}
+
+// Search function
+function searchReviews() {
+    const searchTerm = document.getElementById('searchCompany').value.toLowerCase();
+    const cards = document.querySelectorAll('#allReviewsContainer .review-card');
+    
+    cards.forEach(card => {
+        const companyName = card.querySelector('.company-name').textContent.toLowerCase();
+        if (companyName.includes(searchTerm) || searchTerm === '') {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Initial load
+loadAllReviews();
+
+// Check URL parameter for success message
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('review') === 'success') {
+    alert('✅ Your review has been submitted successfully! It will be visible after approval.');
+}
+    </script>
+</body>
+</html>
