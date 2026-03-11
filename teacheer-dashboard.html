@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Dashboard</title>
+
+</head>
+
+    <style>
+       /* ===== PAGE BACKGROUND ===== */
+
+
+/* ===== HEADER ===== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+}
+
+/* Body Layout */
+body {
+ min-height:100vh;
+background:linear-gradient(135deg,#e6c7ff,#f3dcff,#ffd6ff);
+color:#333;
+ 
+}
+html, body{
+    margin:0;
+    padding:0;
+}
+
+header{
+    width:100%;
+    background: rgba(203, 103, 199, 0.674);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 8px 0;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:0 20px;
+}
+
+.header-flex{
+display:flex;
+align-items:center;
+justify-content:space-between;
+flex-wrap:wrap;
+}
+
+
+/* ================= LOGO ================= */
+
+.logo-box{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.logo-box img{
+width:55px;
+height:55px;
+border-radius:50%;
+ border: 2px solid #fff;
+}
+
+.logo-text h1{
+font-size:18px;
+color: #330e43;
+ /* margin-top: 0;
+        text-align: left;
+        padding-bottom: 10px; */
+
+}
+
+.logo-text p{
+font-size:12px;
+color:#330e43;
+}
+
+
+/* ================= TOP NAV ================= */
+
+.nav-buttons{
+display:flex;
+gap:18px;
+}
+
+.nav-btn{
+text-decoration: none;
+        color: #330e43;
+        font-size: 14px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        transition: 0.3s;
+        
+}
+
+.nav-btn:hover{
+     background: rgba(255, 255, 255, 0.25);
+
+}
+
+h1{
+text-align:center;
+color:#4B0082;
+margin-bottom:10px;
+}
+
+h2{
+text-align:center;
+margin:30px 0 20px;
+color:#4B0082;
+margin-bottom: 50px;
+}
+
+a{
+display:block;
+text-align:center;
+margin-bottom:20px;
+text-decoration:none;
+font-weight:600;
+color:#4B0082;
+margin-bottom: 50px;
+margin-top: 40px;
+}
+
+.page-content{
+    width:100%;
+    max-width:1000px;
+    margin:auto;
+    text-align:center;
+}
+
+/* ===== TABLE CONTAINER ===== */
+
+#pendingTable{
+max-width:1000px;
+width: 100%;
+margin:0 auto;
+border-collapse:collapse;
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* ===== TABLE HEADER ===== */
+
+th{
+background:rgba(213, 88, 209, 0.727);
+color:white;
+padding:12px;
+text-align:center;
+}
+
+/* ===== TABLE CELLS ===== */
+
+td{
+padding:12px;
+text-align:center;
+border-bottom:1px solid #eee;
+}
+
+tr:hover{
+background:#f6ecff;
+}
+
+/* ===== ACTION AREA ===== */
+
+.actions{
+display:flex;
+flex-direction:column;
+gap:8px;
+align-items:center;
+}
+
+/* ===== INPUT FIELD ===== */
+
+.actions input{
+padding:6px;
+border-radius:6px;
+border:1px solid #ccc;
+width:120px;
+}
+
+/* ===== BUTTONS ===== */
+
+.actions button{
+padding:6px 14px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+font-weight:600;
+color:white;
+}
+
+.actions button:first-child{
+background:#4caf50;
+}
+
+.actions button:last-child{
+background:#f44336;
+}
+
+.actions button:hover{
+opacity:0.9;
+}
+
+h1, h2, #pendingTable, a{
+margin-left:auto;
+margin-right:auto;
+}
+
+h1{
+margin-top:40px;
+}
+
+#pendingTable{
+margin-top:20px;
+}
+table, th, td {
+            border: 1px solid #f5cde9;
+        }
+
+
+@media(max-width:768px){
+
+ .header-flex {
+        flex-direction: column;
+        gap: 15px;
+         align-items: center;
+        text-align: center;
+    }
+
+    .nav-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+         gap: 10px;
+    }
+}
+
+
+    </style>
+
+<body>
+    <header>
+        <div class="container header-flex">
+
+            <!-- LOGO + NAME -->
+            <div class="logo-box">
+                <img src="cse-bg-img/logo.jpeg">
+                <div class="logo-text">
+                    <h1>CAMFAS</h1>
+                    <p>Simplifying Campus Life for Faculty and Students</p>
+                </div>
+            </div>
+
+            
+
+            <!-- NAV -->
+            <nav class="nav-buttons">
+                <a href="#" class="nav-btn">Login</a>
+                <a href="#departments" class="nav-btn">Departments</a>
+                <a href="mainAbout.html" class="nav-btn">About Us</a>
+                <a href="#contact" class="nav-btn">Contact</a>
+            </nav>
+
+        </div>
+    </header>
+
+   <div class="page-content">
+
+<h1>Teacher Dashboard - <%= user.name %></h1>
+<a href="/auth/logout" class="logout-btn">Logout</a>
+
+<h2>Pending Approvals</h2>
+    <table id="pendingTable">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Leave Type</th>
+                <th>Dates</th>
+                <th>Reason</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be loaded here -->
+        </tbody>
+    </table>
+
+    <script>
+        fetch('/api/pending-leaves?role=teacher')
+            .then(res => res.json())
+            .then(leaves => {
+                const tbody = document.querySelector('#pendingTable tbody');
+                leaves.forEach(leave => {
+                    const row = tbody.insertRow();
+                    row.innerHTML = `
+                        <td>${leave.studentName}</td>
+                        <td>${leave.leaveType}</td>
+                        <td>${new Date(leave.startDate).toLocaleDateString()} to ${new Date(leave.endDate).toLocaleDateString()}</td>
+                        <td>${leave.reason}</td>
+                        <td class="actions">
+                            <button onclick="approveLeave('${leave._id}')">Approve</button>
+                            <button onclick="rejectLeave('${leave._id}')">Reject</button>
+                            <input type="text" id="comment-${leave._id}" placeholder="Comment">
+                        </td>
+                    `;
+                });
+            });
+
+        function approveLeave(id) {
+            const comment = document.getElementById(`comment-${id}`).value;
+            fetch(`/approval/teacher/${id}`, {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({action:'approve', comment})
+            }).then(() => location.reload());
+        }
+
+        function rejectLeave(id) {
+            const comment = document.getElementById(`comment-${id}`).value;
+            fetch(`/approval/teacher/${id}`, {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({action:'reject', comment})
+            }).then(() => location.reload());
+        }
+    </script>
+</body>
+</html>
