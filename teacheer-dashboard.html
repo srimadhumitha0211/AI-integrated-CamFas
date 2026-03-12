@@ -5,11 +5,13 @@
      <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Teacher Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
 
 </head>
 
     <style>
-       /* ===== PAGE BACKGROUND ===== */
+      
 
 
 /* ===== HEADER ===== */
@@ -82,7 +84,95 @@ color: #330e43;
 font-size:12px;
 color:#330e43;
 }
+/* DASHBOARD HEADER */
 
+.dashboard-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+max-width:1000px;
+margin:40px auto 20px auto;
+gap:20px;
+}
+
+/* CENTER TEXT */
+
+.header-center{
+flex:2;
+text-align:center;
+}
+.header-center h2{
+    margin-bottom: 10px;
+    margin-top: 50px;
+}
+/* LOGOUT BUTTON */
+
+.header-right{
+flex:1;
+display:flex;
+justify-content:flex-end;
+
+}
+.logout-btn{
+text-decoration:none;
+background:#d46bd1;
+color:white;
+padding:8px 18px;
+border-radius:25px;
+font-size:14px;
+font-weight:500;
+transition:all 0.3s ease;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Hover effect */
+.logout-btn:hover{
+background:#b94ab6;
+transform:translateY(-2px);
+box-shadow:0 6px 14px rgba(0,0,0,0.2);
+}
+
+/* Click effect */
+.logout-btn:active{
+transform:scale(0.95);
+box-shadow:0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* RIGHT IMAGE */
+
+.header-image{
+flex:1;
+display:flex;
+justify-content:flex-end;
+}
+
+.dashboard-img{
+width:300px;
+height:auto;
+border-radius:10px;
+}
+
+@media(max-width:768px){
+
+.dashboard-header{
+flex-direction:column;
+text-align:center;
+}
+
+.header-right{
+justify-content:center;
+}
+
+.header-image{
+justify-content:center;
+margin-top:10px;
+}
+
+.dashboard-img{
+width:200px;
+}
+
+}
 
 /* ================= TOP NAV ================= */
 
@@ -134,7 +224,7 @@ margin-top: 40px;
     width:100%;
     max-width:1000px;
     margin:auto;
-    text-align:center;
+    text-align:right;
 }
 
 /* ===== TABLE CONTAINER ===== */
@@ -274,12 +364,22 @@ table, th, td {
         </div>
     </header>
 
-   <div class="page-content">
+   <div class="dashboard-header">
 
-<h1>Teacher Dashboard - <%= user.name %></h1>
-<a href="/auth/logout" class="logout-btn">Logout</a>
-
+<div class="header-center">
+<h1>WELCOME - <%= user.name %> !</h1>
 <h2>Pending Approvals</h2>
+</div>
+
+<div class="header-right">
+<a href="/auth/logout" class="logout-btn">Logout</a>
+</div>
+
+<div class="header-image">
+<img src="backend/cse-bg-img/teacher dashboard.jpeg" class="dashboard-img">
+</div>
+
+</div>
     <table id="pendingTable">
         <thead>
             <tr>
