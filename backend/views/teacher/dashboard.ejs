@@ -1,20 +1,387 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Teacher Dashboard</title>
-    <style>
-        body { font-family: Arial; padding: 20px; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ddd; padding: 10px; }
-        .pending { background: #fff3cd; }
-        .actions button { margin: 5px; padding: 5px 10px; }
-    </style>
-</head>
-<body>
-    <h1>Teacher Dashboard - <%= user.name %></h1>
-    <a href="/auth/logout">Logout</a>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <h2>Pending Approvals</h2>
+
+</head>
+
+    <style>
+      
+
+
+/* ===== HEADER ===== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+}
+
+/* Body Layout */
+body {
+ min-height:100vh;
+background:linear-gradient(135deg,#e6c7ff,#f3dcff,#ffd6ff);
+color:#333;
+ 
+}
+html, body{
+    margin:0;
+    padding:0;
+}
+
+header{
+    width:100%;
+    background: rgba(203, 103, 199, 0.674);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 8px 0;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:0 20px;
+}
+
+.header-flex{
+display:flex;
+align-items:center;
+justify-content:space-between;
+flex-wrap:wrap;
+}
+
+
+/* ================= LOGO ================= */
+
+.logo-box{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.logo-box img{
+width:55px;
+height:55px;
+border-radius:50%;
+ border: 2px solid #fff;
+}
+
+.logo-text h1{
+font-size:18px;
+color: #330e43;
+ /* margin-top: 0;
+        text-align: left;
+        padding-bottom: 10px; */
+
+}
+
+.logo-text p{
+font-size:12px;
+color:#330e43;
+}
+/* DASHBOARD HEADER */
+
+.dashboard-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+max-width:1000px;
+margin:40px auto 20px auto;
+gap:20px;
+}
+
+/* CENTER TEXT */
+
+.header-center{
+flex:2;
+text-align:center;
+}
+.header-center h2{
+    margin-bottom: 10px;
+    margin-top: 50px;
+}
+/* LOGOUT BUTTON */
+
+.header-right{
+flex:1;
+display:flex;
+justify-content:flex-end;
+
+}
+.logout-btn{
+    display:inline-block;
+    margin:20px 0;
+text-decoration:none;
+background:#d46bd1;
+color:white;
+padding:8px 18px;
+border-radius:25px;
+font-size:14px;
+font-weight:500;
+transition:all 0.3s ease;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Hover effect */
+.logout-btn:hover{
+background:#b94ab6;
+transform:translateY(-2px);
+box-shadow:0 6px 14px rgba(0,0,0,0.2);
+}
+
+/* Click effect */
+.logout-btn:active{
+transform:scale(0.95);
+box-shadow:0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* RIGHT IMAGE */
+
+.header-image{
+flex:1;
+display:flex;
+justify-content:flex-end;
+}
+
+.dashboard-img{
+width:300px;
+height:auto;
+border-radius:10px;
+}
+
+@media(max-width:768px){
+
+.dashboard-header{
+flex-direction:column;
+text-align:center;
+}
+
+.header-right{
+justify-content:center;
+}
+
+.header-image{
+justify-content:center;
+margin-top:10px;
+}
+
+.dashboard-img{
+width:200px;
+}
+
+}
+
+/* ================= TOP NAV ================= */
+
+.nav-buttons{
+display:flex;
+gap:18px;
+}
+
+.nav-btn{
+text-decoration: none;
+        color: #330e43;
+        font-size: 14px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        transition: 0.3s;
+        
+}
+
+.nav-btn:hover{
+     background: rgba(255, 255, 255, 0.25);
+
+}
+
+h1{
+text-align:center;
+color:#4B0082;
+margin-bottom:10px;
+}
+
+h2{
+text-align:center;
+margin:30px 0 20px;
+color:#4B0082;
+margin-bottom: 50px;
+}
+
+a{
+display:block;
+text-align:center;
+margin-bottom:20px;
+text-decoration:none;
+font-weight:600;
+color:#4B0082;
+margin-bottom: 50px;
+margin-top: 40px;
+}
+
+.page-content{
+    width:100%;
+    max-width:1000px;
+    margin:auto;
+    text-align:right;
+}
+
+/* ===== TABLE CONTAINER ===== */
+
+#pendingTable{
+max-width:1000px;
+width: 100%;
+margin:0 auto;
+border-collapse:collapse;
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* ===== TABLE HEADER ===== */
+
+th{
+background:rgba(213, 88, 209, 0.727);
+color:white;
+padding:12px;
+text-align:center;
+}
+
+/* ===== TABLE CELLS ===== */
+
+td{
+padding:12px;
+text-align:center;
+border-bottom:1px solid #eee;
+}
+
+tr:hover{
+background:#f6ecff;
+}
+
+/* ===== ACTION AREA ===== */
+
+.actions{
+display:flex;
+flex-direction:column;
+gap:8px;
+align-items:center;
+}
+
+/* ===== INPUT FIELD ===== */
+
+.actions input{
+padding:6px;
+border-radius:6px;
+border:1px solid #ccc;
+width:120px;
+}
+
+/* ===== BUTTONS ===== */
+
+.actions button{
+padding:6px 14px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+font-weight:600;
+color:white;
+}
+
+.actions button:first-child{
+background:#4caf50;
+}
+
+.actions button:last-child{
+background:#f44336;
+}
+
+.actions button:hover{
+opacity:0.9;
+}
+
+h1, h2, #pendingTable, a{
+margin-left:auto;
+margin-right:auto;
+}
+
+h1{
+margin-top:40px;
+}
+
+#pendingTable{
+margin-top:20px;
+}
+table, th, td {
+            border: 1px solid #f5cde9;
+        }
+
+
+@media(max-width:768px){
+
+ .header-flex {
+        flex-direction: column;
+        gap: 15px;
+         align-items: center;
+        text-align: center;
+    }
+
+    .nav-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+         gap: 10px;
+    }
+}
+
+
+    </style>
+
+<body>
+    <header>
+        <div class="container header-flex">
+
+            <!-- LOGO + NAME -->
+            <div class="logo-box">
+                <img src="cse-bg-img/logo.jpeg">
+                <div class="logo-text">
+                    <h1>CAMFAS</h1>
+                    <p>Simplifying Campus Life for Faculty and Students</p>
+                </div>
+            </div>
+
+            
+
+            <!-- NAV -->
+            <nav class="nav-buttons">
+                <a href="/student/dashboard">Home</a>
+                    <a href="/student/leave-form">Apply Leave</a>
+                    <a href="/student/leave-history">History</a>
+                    <a href="/auth/logout">Logout</a>
+            </nav>
+
+        </div>
+    </header>
+
+   <div class="dashboard-header">
+
+<div class="header-center">
+<h1>WELCOME - <%= user.name %> !</h1>
+<h2>Pending Approvals</h2>
+</div>
+
+<div class="header-right">
+<a href="/auth/logout" class="logout-btn">Logout</a>
+</div>
+
+<div class="header-image">
+<img src="backend/cse-bg-img/teacher dashboard.jpeg" class="dashboard-img">
+</div>
+
+</div>
     <table id="pendingTable">
         <thead>
             <tr>
