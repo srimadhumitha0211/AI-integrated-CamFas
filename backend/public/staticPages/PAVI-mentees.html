@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+    <style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+             background-color: #efb6e6a1;
+            
+        }
+
+        .container{
+    width:100%;
+    max-width:1100px;
+    margin:auto;
+}
+
+        header {
+        background: rgba(203, 103, 199, 0.674);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 14px 0;
+        
+    }
+
+    .header-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* LOGO */
+    .logo-box {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .logo-box img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        background: #ca93e2;;
+    }
+
+    .logo-text h1 {
+        font-size: 20px;
+        color: #330e43;
+    }
+    .logo-text p{
+    font-size:12px;
+    color:#330e43;
+}
+
+/* 
+    .logo-text span {
+        font-size: 12px;
+        
+        color: #330e43;
+    } */
+
+    /* NAV */
+    .nav-buttons {
+        display: flex;
+        gap: 18px;
+    }
+
+    .nav-btn {
+        text-decoration: none;
+        /* color: #fff; */
+        color: #330e43;
+        font-size: 14px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+
+    .nav-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+        h2 {
+            text-align: center;
+             color: black;
+            margin-bottom: 20px;
+        }
+        
+
+.table-container{
+    max-width:1100px;
+    margin:auto;
+    padding:0 15px 40px 15px;
+}
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        th {
+             background-color: #ed98df;
+            color: rgb(13, 12, 12);
+            
+            padding: 12px;
+            font-size: 16px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+           
+             background: rgba(230, 125, 200, 0.334);
+        }
+
+        tr:hover {
+            
+            background-color: #ed98df;
+        }
+
+        table, th, td {
+            border: 1px solid #e459bd;
+            
+        }
+           @media (max-width: 768px) {
+
+    .header-flex {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+           }
+    </style>
+</head>
+<body>
+
+     <header>
+        <div class="container header-flex">
+
+            <!-- LOGO + NAME -->
+            <div class="logo-box">
+                <img src="../cse-bg-img/logo.jpeg">
+                <div class="logo-text">
+                    <h1>CAMFAS</h1>
+                    <p>Simplifying Campus Life for Faculty and Students</p>
+                </div>
+            </div>
+
+            
+
+            <!-- NAV -->
+            <nav class="nav-buttons">
+                <a href="#" class="nav-btn">Login</a>
+                <a href="#departments" class="nav-btn">Departments</a>
+                <a href="mainAbout.html" class="nav-btn">About Us</a>
+                <a href="#contact" class="nav-btn">Contact</a>
+            </nav>
+
+        </div>
+    </header>
+
+<h2>II CSE - B Student List</h2>
+
+<table>
+    <tr>
+        <th>Sl.No</th>
+        <th>Reg.No</th>
+        <th>Name</th>
+        <th>Mentor</th>
+        <th>Class</th>
+    </tr>
+
+    <tr><td>1</td><td>953024E+11</td><td>MOHAMMED ARIF S</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>2</td><td>953024E+11</td><td>MUNIS S</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>3</td><td>953024E+11</td><td>PANDESWARI S</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>4</td><td>953024E+11</td><td>PARTHASARATHI K</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>5</td><td>953024E+11</td><td>PAVITHRA R</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>6</td><td>953024E+11</td><td>PRAVEEN S</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>7</td><td>953024E+11</td><td>PRINCETON R</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>8</td><td>953024E+11</td><td>PRIYADHARSHINI A</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>9</td><td>953024E+11</td><td>PUZHAARASU K</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>10</td><td>953024E+11</td><td>RAHUL R</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>11</td><td>953024E+11</td><td>RAJA SANKARI V</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>12</td><td>953024E+11</td><td>RAMA RAJAN M</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>13</td><td>953024E+11</td><td>RASITH IBRAHIM A</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>14</td><td>953024E+11</td><td>SAMSUKANI A</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>15</td><td>953024E+11</td><td>SANDHYA S</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>16</td><td>953024E+11</td><td>SANJAY S</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>17</td><td>953024E+11</td><td>SANTHIYA P</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>18</td><td>953024E+11</td><td>SANTHIYA G</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>19</td><td>953024E+11</td><td>SANTHIYA S</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>20</td><td>953024E+11</td><td>SARATHI M</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>21</td><td>953024E+11</td><td>SATHISH M</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>22</td><td>953024E+11</td><td>SELVA SOUDARE F</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>23</td><td>953024E+11</td><td>SHREE HARINI K</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>24</td><td>953024E+11</td><td>SHUMI PRIYA S</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>25</td><td>953024E+11</td><td>SILVANUS S</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>26</td><td>953024E+11</td><td>SIVAMURUGAN D</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>27</td><td>953024E+11</td><td>SIVARANJITHA V</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>28</td><td>953024E+11</td><td>SNOW NISHOBIN J</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>29</td><td>953024E+11</td><td>STEFIN S</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>30</td><td>953024E+11</td><td>SUBASH M</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>31</td><td>953024E+11</td><td>SUBINSHA R</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>32</td><td>953024E+11</td><td>SUTHARSON V</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>33</td><td>953024E+11</td><td>TAMIL SELVAM B</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>34</td><td>953024E+11</td><td>THANGA PUSPAM A</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>35</td><td>953024E+11</td><td>VARSHA J</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>36</td><td>953024E+11</td><td>VENKATESH P</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>37</td><td>953024E+11</td><td>VIVEKANAND M</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>38</td><td>953024E+11</td><td>YOGESH SHANMUGAM S</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>39</td><td>953024E+11</td><td>JANANI M</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>40</td><td>953024E+11</td><td>RUBAS SELVIN S</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+    <tr><td>41</td><td>953024E+11</td><td>PRADEEPAN F</td><td>Ms. V. Pavitha</td><td>II CSE - B</td></tr>
+
+</table>
+
+</body>
+</html>

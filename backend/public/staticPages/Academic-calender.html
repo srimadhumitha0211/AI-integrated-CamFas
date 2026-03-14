@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<title>Academic Calender</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+  min-height: 100vh;
+  margin: 0;
+  font-family: "poppins",sans-serif;
+  display: flex;
+  flex-direction: column;
+
+}
+.container{
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+/* HEADER */
+    header {
+        background: rgba(203, 103, 199, 0.674);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 14px 0;
+        margin: 0%;
+        width: 100%;
+        
+    }
+
+    .header-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* LOGO */
+    .logo-box {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .logo-box img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        background: #ca93e2;;
+    }
+
+    .logo-text h1 {
+        font-size: 20px;
+        color: #330e43;
+          margin-top: 0;
+        text-align: left;
+        padding-bottom: 10px;
+    }
+
+    .logo-text p {
+        font-size: 12px;
+        /* color: #f1f1f1; */
+        color: #330e43;
+    }
+
+    /* NAV */
+    .nav-buttons {
+        display: flex;
+        gap: 18px;
+    }
+
+    .nav-btn {
+        text-decoration: none;
+        /* color: #fff; */
+        color: #330e43;
+        font-size: 14px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+
+    .nav-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+
+
+
+.main-container{
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  max-width: 1100px;
+  width: 100%;
+  margin-top: 40px;
+  padding: 40px 20px;
+}
+   
+.academic-calendar {
+  min-height: 100vh;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #e6c7ff, #f3dcff, #ffd6ff);
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.academic-calendar h2 {
+  font-size: 32px;
+  /* color: #d63384; */
+  color:#4B0082;
+  margin-bottom: 10px;
+}
+
+.semester-info {
+  color: #555;
+  margin-bottom: 40px;
+  font-weight: 500;
+}
+
+.timeline {
+  flex: 2;
+  position: relative;
+  max-width: 800px;
+  margin: auto;
+  padding-left: 20px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 30px;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(#d63384, #c77dff);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  padding-left: 70px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+  background: #d63384;
+  border-radius: 50%;
+  border: 4px solid white;
+  transition: 0.3s;
+}
+
+.timeline-content {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  text-align: left;
+  transition: 0.3s;
+}
+
+.timeline-content h3 {
+  color: #c77dff;
+  margin-bottom: 5px;
+}
+
+.timeline-content h4 {
+  color: #2d2d2d;
+  margin-bottom: 8px;
+}
+
+.timeline-content p {
+  color: #555;
+  font-size: 14px;
+}
+
+/* Hover Effects */
+.timeline-item:hover .timeline-content {
+  transform: translateX(8px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+.timeline-item:hover .timeline-dot {
+  background: #c77dff;
+}
+
+.calendar-illustration {
+  text-align: center;
+  margin-bottom: 20px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.calendar-illustration img {
+  
+  width: 400px;
+  max-width: 320px;
+  border-radius: 15px;
+  height: auto;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.15));
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+   .header-flex{ 
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center;
+     gap: 10px;
+   }
+    .nav-buttons{ 
+      flex-wrap: wrap; 
+      justify-content: center;
+       gap: 10px; 
+      }
+
+  .main-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .timeline::before {
+    left: 15px;
+  }
+
+  .timeline-item {
+    padding-left: 50px;
+  }
+
+  .timeline-dot {
+    left: 5px;
+  }
+}
+</style>
+</head>
+<body>
+
+   <header>
+        <div class="container header-flex">
+
+            <!-- LOGO + NAME -->
+            <div class="logo-box">
+                <img src="../cse-bg-img/logo.jpeg">
+                <div class="logo-text">
+                    <h1>CAMFAS</h1>
+                    <p>Simplifying Campus Life for Faculty and Students</p>
+                </div>
+            </div>
+
+            
+
+            <!-- NAV -->
+            <nav class="nav-buttons">
+                <a href="#" class="nav-btn">Login</a>
+                <a href="#departments" class="nav-btn">Departments</a>
+                <a href="mainAbout.html" class="nav-btn">About Us</a>
+                <a href="#contact" class="nav-btn">Contact</a>
+            </nav>
+
+        </div>
+    </header>
+
+  
+    
+
+  <section class="academic-calendar">
+    <h2>Academic Calendar 2025 – 2026</h2>
+  <p class="semester-info">Odd Semester | Department of CSE</p>
+
+<div class="main-container">
+  <div class="calendar-illustration">
+    <img src="../cse-bg-img/calende.jpeg" alt="Academic Illustration">
+  </div>
+
+  
+  <div class="timeline">
+
+    <div class="timeline-item academic">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>June 2025</h3>
+        <h4>Semester Begins</h4>
+        <p>Classes commence for all years.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item exam">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>July 2025</h3>
+        <h4>Internal Examination – 1</h4>
+        <p>10 July – 15 July</p>
+      </div>
+    </div>
+
+    <div class="timeline-item event">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>August 2025</h3>
+        <h4>Department Symposium</h4>
+        <p>Technical and cultural events conducted.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item exam">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>September 2025</h3>
+        <h4>Internal Examination – 2</h4>
+        <p>12 Sept – 17 Sept</p>
+      </div>
+    </div>
+
+    <div class="timeline-item exam">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>October 2025</h3>
+        <h4>Model Examination</h4>
+        <p>05 Oct – 12 Oct</p>
+      </div>
+    </div>
+
+    <div class="timeline-item holiday">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>November 2025</h3>
+        <h4>University Examination</h4>
+        <p>Theory & Practical Exams Begin</p>
+      </div>
+    </div>
+</div>
+  </div>
+</section>
+
+</body>
+</html>

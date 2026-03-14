@@ -7,20 +7,24 @@
     <link rel="stylesheet" href="glady.css">
 </head>
 <body>
-    <header style="padding: 10px;">
-        <div class="container">
-            <div class="header-wrapper">
-                <div class="logo">
-                   <img class="header-image" src="/camfslogo.jpeg" alt="College Logo">
-                </div>
-                <nav style="margin-top: 23px;">
+    <header style="padding: 10px; margin-bottom: 25px; border-radius:20px;">
+        <div class="container header-flex">
+            <div class="logo-box">
+                
+                   <img src="/cse-bg-img/logo.jpeg" alt="College Logo">
+                   <div class="logo-text">
+                      <h1>CAMFAS</h1>
+                    <p>Simplifying Campus Life for Faculty and Students</p>
+                   </div>
+            </div>    
+                <nav class="nav-buttons">
                     <a href="/student/dashboard">Home</a>
                     <a href="/student/leave-form">Apply Leave</a>
                     <a href="/student/leave-history">History</a>
                     <a href="/auth/logout">Logout</a>
                      <a href="/student/ai-assistant">AI Study</a>
                 </nav>
-            </div>
+            
         </div>
     </header>
 
@@ -165,23 +169,39 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
-header{
-    padding: 20px 0px;
-      background: rgb(247, 109, 208);
-    color: #ffffff;
-    box-sizing: border-box;
-    margin-bottom: 40px;
+header {
+   
+        background: rgba(203, 103, 199, 0.674);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 14px 0;
+        margin: 0%;
+        width: 100%;
+       
+        
+    }
+    .container{
+  width:95%;
+  max-width:1200px;
+  margin:auto;
 }
 
 .header-wrapper{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+     display: flex;
+        align-items: center;
+        gap: 12px;
 }
 
 .header-wrapper nav {
     display: flex;
     gap: 35px;
+}
+.header-wrapper img{
+    width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        background: #ca93e2;;
 }
 
 .header-wrapper nav a {
@@ -193,11 +213,42 @@ header{
     
     
 }
-.header-image {
+.header-wrapper h1{
+     font-size: 20px;
+        color: #330e43;
+        margin-top: 0;
+        text-align: left;
+        padding-bottom: 10px;
+}
+.header-wrapper p{
+     font-size: 12px;
+        /* color: #f1f1f1; */
+        color: #330e43;
+}
+.nav-buttons {
+        display: flex;
+        gap: 18px;
+    }
+
+    .nav-btn {
+        text-decoration: none;
+        /* color: #fff; */
+        color: #330e43;
+        font-size: 14px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+
+    .nav-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+/* .header-image {
     height: 60px;
     width: 80px;
     align-items: center;
-}
+} */
 @media (max-width: 768px) {
 
     .header-wrapper {
@@ -213,403 +264,473 @@ header{
         align-items: center;
         gap: 0px;
     }
-}
-
-
-
-/* body {
-    background: #7d3578;
-} */
-
-/* ===== DASHBOARD LAYOUT ===== */
-.dashboard-container {
-    display: flex;
-    min-height: 50vh;
-}
-
-/* ===== SIDEBAR ===== */
-.sidebar {
-    width: 260px;
-    background: #d20c8d;
-    color: rgb(233, 10, 200);
-    padding: 20px;
-}
-
-.sidebar-header h2 {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.sidebar-nav {
-    margin-top: 20px;
-}
-
-.nav-link {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 8px;
-}
-
-.nav-link.active,
-.nav-link:hover {
-    background: #ef09aa;
-}
-
-/* ===== MAIN CONTENT ===== */
-.main-content {
-    flex: 1;
-    padding: 20px;
-}
-
-/* ===== HEADER ===== */
-.dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-#notificationCount {
-    background: rgb(243, 11, 96);
-    color: rgb(250, 250, 250);
-    padding: 3px 7px;
-    border-radius: 50%;
-    font-size: 12px;
-}
-#apply-leave-section {
-    max-width: 800px;   /* 👈 controls width */
-    width: 90%;
-    /* margin-top: 0px; */
-    margin: 40px auto;  /* 👈 centers horizontally */
-    padding: 30px;
-    border-radius: 12px;
-}
-input, select, textarea {
-    width: 100%;
-}
-
-
-
-/* ===== SECTION STYLING ===== */
-.dashboard-section  {
-    background: rgb(247, 109, 208);
-    background-image: url("formpink.jpeg");
-    background-size: 45% ;
-    background-repeat: no-repeat;
-    background-position: 90% 70%  ;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    margin-bottom: 20px;
-    
-    
-   
-}
-
-
-.dashboard-content{
-    background-image: none;
-    background-color: rgb(247, 109, 208);
-}
-#home-section {
-background: none;
-background-color:  rgb(247, 109, 208);
-}  
-.approved-leaves .count {
-  font-size: 0;   /* 0 text hide */
-}
-
-P{
-    font-family: bold
-}
-
-
-/* ===== FORM STYLING (LEAVE FORM PAGE) ===== */
-
-
-
-
-
-
-.leave-form {
-    margin-top: 15px;
-}
-
-.form-row {
-    display: flex;
-    gap:20px;
-    flex-wrap: wrap;
-    
-}
-
-
-.form-group {
-    flex: 1;
-    margin-bottom: 15px;
-    
-}
-
-label {
-    display: block;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-input, select, textarea {
-    width: 25%;
-    padding: 4px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
-
-/* Buttons */
-.btn {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.btn-primary {
-    background: #e61994;
-    color: white;
-}
-
-.btn-secondary {
-    background: #ba6297;
-    color: white;
-}
-
-/* ===== STATS CARDS (HOME SECTION) ===== */
-
-.stats-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-    gap: 50px;
-    background-image: none;
-    background-color: none;
-   
-   
-}
-
-
-
-.stat-card {
-    background: #e5e7eb;
-    padding: 2px;
-    border-radius: 8px;
-    text-align: center;
-    
-}
-
-/* ===== TABLE (LEAVE HISTORY PAGE) ===== */
-.table-container {
-    overflow-x: auto;
-}
-
-
-table {
-    width: 50%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-/* ===== MODALS ===== */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 50%;
-    background: rgba(212, 61, 151, 0.5);
-}
-
-.modal-content {
-    background: white;
-    width: 50%;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-    
-
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 768px) {
-    .dashboard-container {
+    /* .header-flex {
         flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-    }
-
-    .form-row {
-        flex-direction: column;
-    }
-
-    .modal-content {
-        width: 90%;
-    }
+        text-align: center;
+        align-items: center;
+        gap: 10px;
+    } */
 }
 
-/* LEAVE HISTORY */
-
-/* ========== GLOBAL & BACKGROUND ========== */
 
 
+/* ================= GLOBAL RESET ================= */
 
-
-     /* LEAVE HISTORY// */
-
- 
 *{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
 }
 
 body{
-  font-family: 'Poppins', Arial, sans-serif;
-  /* background: linear-gradient(135deg, #ff7eb3, #6a11cb); */
-  min-height: 100vh;
-  /* padding: 50px 25px; */
-  
+    /* background: linear-gradient(-45deg, #d5abf7, #dbbcec, #de8ede, #c084f5); */
+    /* background: linear-gradient(135deg, #d5abf7, #dbbcec, #de8ede); */
+     background: linear-gradient(135deg, #e6c7ff, #f3dcff, #ffd6ff);
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
+    min-height:100vh;
+    padding:30px;
 }
 
-/* ========== MAIN CARD CONTAINER ========== */
-#my-leaves-section{
-  background-color:  rgb(247, 109, 208);
-  max-width: 400px;
-  max-height: 500%;
-  margin: 0 auto;
-  padding: 50px 30px;
-  border-radius: 18px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+/* HEADER */
+    header {
+        background: rgba(203, 103, 199, 0.674);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 14px 0;
+        
+    }
+
+    .header-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .nav-buttons {
+        display: flex;
+        gap: 18px;
+    }
+
+    .nav-btn {
+        text-decoration: none;
+        /* color: #fff; */
+        color: #330e43;
+        font-size: 14px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+
+    .nav-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+
+
+
+
+    /* LOGO */
+    .logo-box {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .logo-box img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        background: #ca93e2;;
+    }
+
+    .logo-text h1 {
+        font-size: 20px;
+        color: #330e43;
+    }
+
+    .logo-text span {
+        font-size: 12px;
+        /* color: #f1f1f1; */
+        color: #330e43;
+    }
+
+    /* NAV */
+    .nav-buttons {
+        display: flex;
+        gap: 18px;
+    }
+
+    .nav-btn {
+        text-decoration: none;
+        /* color: #fff; */
+        color: #330e43;
+        font-size: 14px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+
+    .nav-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+
+
+
+
+@keyframes gradientMove{
+    0%{ background-position:0% 50%; }
+    50%{ background-position:100% 50%; }
+    100%{ background-position:0% 50%; }
 }
- 
-/* ========== SECTION HEADER ========== */
+
+/* ================= DASHBOARD LAYOUT ================= */
+
+.dashboard-container{
+    display:flex;
+    min-height:100vh;
+    gap:20px;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    width:260px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(15px);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 8px 30px rgba(75,0,130,0.2);
+}
+
+.sidebar-header h1{
+    font-size:18px;
+    margin-bottom:20px;
+    color:#4B0082;
+}
+
+.nav-link{
+    display:block;
+    padding:10px 15px;
+    margin-bottom:10px;
+    text-decoration:none;
+    color:#4B0082;
+    border-radius:10px;
+    transition:0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active{
+background:#ede7ff;    
+      /* background: linear-gradient(90deg, #8e24aa, #ba68c8); */
+    transform:translateX(5px);
+}
+
+/* ================= MAIN CONTENT ================= */
+
+.main-content{
+    flex:1;
+}
+
+.dashboard-section{
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(15px);
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 8px 30px rgba(75,0,130,0.2);
+    margin-bottom:25px;
+    transition:0.4s ease;
+}
+
+.dashboard-section:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 40px rgba(75,0,130,0.3);
+}
+
+/* ================= SECTION HEADER ================= */
+
 .section-header{
-  display: flex;
-  align-items:left;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 25px;
-  margin-bottom: 20px;
-} 
-.section-header{
-  justify-content: center;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-bottom:20px;
 }
 
 .section-header h2{
-  color: #4a0e78;
-  font-size: 24px;
+    color:#4B0082;
 }
 
-.filters{
-  display: flex;
-  align-content: right;
-  gap: 50px;
-  align-items: center;
+/* ================= BUTTONS ================= */
+
+.btn{
+    padding:10px 18px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    transition:0.3s ease;
+    font-weight:500;
 }
 
-#statusFilter{
-  padding: 8px 10px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  outline: none;
+.btn-primary{
+    /* background:linear-gradient(135deg,#8e2de2,#4a00e0); */
+      background: linear-gradient(90deg, #8e24aa, #ba68c8);
+    color:white;
 }
 
-#statusFilter:focus{
-  border-color: #6a11cb;
+.btn-secondary{
+    background:#ede7ff;
+    color:#4B0082;
 }
 
-/* ========== BUTTON ========== */
-#refreshLeavesBtn{
-  background: #6a11cb;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s ease;
+.btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 8px 20px rgba(75,0,130,0.4);
 }
 
-#refreshLeavesBtn:hover{
-  background: #4a0e78;
-  transform: translateY(-1px);
+/* ================= LEAVE FORM ================= */
+
+.leave-form{
+    margin-top:15px;
 }
 
-/* ========== TABLE CONTAINER (LABEL AREA) ========== */
+.form-row{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.form-group{
+    flex:1;
+    min-width:200px;
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:600;
+    color:#4B0082;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:10px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    outline:none;
+}
+
+input:focus, select:focus, textarea:focus{
+    border-color:#8e2de2;
+}
+
+/* ================= TABLE ================= */
+
 .table-container{
-  margin-top: 10px;
+    overflow-x:auto;
 }
 
-#leavesTable{
-  width: 100%;
-  border-collapse: collapse;
+table{
+    width:100%;
+    border-collapse:collapse;
 }
 
-/* Make your labels look like clean rows */
-#leavesTable thead h4{
-  font-weight: 600;
-  color: #333;
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
+th, td{
+    padding:12px;
+    text-align:center;
 }
 
-/* ========== MODALS ========== */
+th{
+    /* background:#ede7ff; */
+      background: linear-gradient(90deg, #8e24aa, #ba68c8);
+    color:#4B0082;
+}
+
+tr:hover{
+    background:rgba(192,168,248,0.3);
+}
+
+/* ================= STATS CARDS ================= */
+
+.stats-cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+ 
+ .stat-card{
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(15px);
+    border-radius:20px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 8px 30px rgba(75,0,130,0.2);
+    transition:0.3s ease;
+}
+
+.stat-card:hover{
+    transform:translateY(-6px);
+}
+
+/* ================= MODAL ================= */
+
 .modal{
-  display: none; /* JS will toggle this */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  align-items: center;
-  justify-content: center;
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    justify-content:center;
+    align-items:center;
 }
 
 .modal-content{
-  background: rgb(255, 255, 255);
-  width: 90%;
-  max-width: 500px;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    /* background:white; */
+      background: linear-gradient(90deg, #8e24aa, #ba68c8);
+    width:90%;
+    max-width:500px;
+    padding:25px;
+    border-radius:20px;
 }
 
-.modal-header{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+    
+     .header-flex {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .dashboard-container{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+    }
+
+    .form-row{
+        flex-direction:column;
+    }
+     .nav-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
 }
 
-.modal-header h3{
-  color: #4a0e78;
+/* ===== LEAVE CRITERIA PAGE ===== */
+
+.criteria-section{
+    max-width:800px;
+    margin:60px auto;
+    text-align:center;
 }
 
-.close-modal{
-  font-size: 22px;
-  cursor: pointer;
+.criteria-section h1,
+.criteria-section h2{
+    text-align:center;
+    margin-bottom:25px;
+    color:#4B0082;
 }
 
-.modal-body{
-  margin-top: 10px;
+.criteria-list{
+    margin-top:20px;
+    text-align:left;
+    line-height:1.8;
+}
+
+.criteria-list p{
+    margin-bottom:15px;   /* gap between each point */
+}
+
+#my-leaves-section h2{
+    text-align:center;
+    margin-bottom:12px;
+}
+
+#leavesTableBody tr{
+    border-bottom:15px solid transparent; /* gap between rows */
+}
+
+.leave-details p{
+    margin-bottom:10px solid transparent;
+}
+
+.filters{
+    display:flex;
+    gap:15px;          /* gap between All Status & Refresh */
+    margin-top:15px;
+}
+
+.filters{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.filters{
+    justify-content:space-between;
+}
+
+#refreshLeavesBtn{
+    margin-top:15px;
+}
+
+/* ===== LEAVE REQUIREMENT NAV BUTTONS ===== */
+
+.sidebar-nav{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:15px;
+    margin-top:30px;
+}
+
+.sidebar-nav .nav-link{
+    display:inline-block;     /* prevents full width */
+    width:auto;               /* no body width */
+    padding:10px 20px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.25);
+    backdrop-filter:blur(10px);
+    text-align:center;
+    min-width:200px;          /* clean box size */
+}
+
+/* #my-leaves-section h2{
+    margin-bottom:25px;
+} */
+
+/* #my-leaves-section h2{
+    text-align:center;
+    margin-bottom:12px;   /* smaller gap */
+ 
+
+
+/* 
+ */
+/* #leavesTable{
+    margin-top: 20px;
+    margin-bottom: 20px;
+} */
+
+/* .leave-details {
+    line-height: 1.8;
+} */
+.table-container p {
+    padding-bottom: 20px;   
+    padding-top: 10px;
+    /* row-gap: 100px; */
 }
 .footer-wrapper {
     background-color: #ffffff;

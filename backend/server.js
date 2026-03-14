@@ -11,12 +11,14 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+// app.use(express.static(__dirname));
 // app.use(express.static(path.join(__dirname)));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+// app.use('/static', express.static(path.join(__dirname, 'staticPages')));
 
 // Add this at the top of your routes, before anything else
 app.get('/simple-json-test', (req, res) => {
@@ -58,6 +60,7 @@ const reviewRoutes = require('./routes/review');
 const skillRoutes = require('./routes/skill');
 const notebooklmRoutes = require('./routes/notebooklKm');
 const geminiRoutes = require('./routes/gemini');
+const chatbotRoutes = require('./routes/chatbot');
 
 
 
@@ -70,6 +73,7 @@ app.use('/reviews', reviewRoutes);
 app.use('/skills', skillRoutes);
 app.use('/notebooklkm', notebooklmRoutes);
 app.use('/gemini', geminiRoutes);
+app.use('/chatbot', chatbotRoutes);
 
 
 // Student routes (views)

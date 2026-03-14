@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+    <style>
+    .section-title {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.section-title h3 {
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: #555;
+}
+
+.section-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Button Style */
+.section-btn {
+       display: block;
+            align-items: center;
+            gap: 10px;
+            background: #f2c8ff;
+            color: #000;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+}
+
+/* Hover Effect */
+.section-btn:hover {
+    transform: translateY(-3px);
+  
+     background: #e5a7ff;
+}
+
+/* Click Effect */
+.section-btn:active {
+    transform: scale(0.97);
+}
+
+</style>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Your CSS File -->
+    <link rel="stylesheet" href="select-yr.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+     <header>
+        <div class="container header-flex">
+
+            <!-- LOGO + NAME -->
+            <div class="logo-box">
+                <img src="../cse-bg-img/logo.jpeg">
+                <div class="logo-text">
+                    <h1>CAMFAS</h1>
+                    <p>Simplifying Campus Life for Faculty and Students</p>
+                </div>
+            </div>
+
+            
+
+            <!-- NAV -->
+            <nav class="nav-buttons">
+                <a href="#" class="nav-btn">Login</a>
+                <a href="#departments" class="nav-btn">Departments</a>
+                <a href="mainAbout.html" class="nav-btn">About Us</a>
+                <a href="#contact" class="nav-btn">Contact</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- DASHBOARD -->
+    <div class="dashboard">
+
+        <!-- LEFT SIDE CARD -->
+        <div class="dashboard-card">
+
+
+            <!-- Select Section Text -->
+            <div class="section-title">
+    <h3>SELECT YOUR SECTION</h3>
+</div>
+
+<div class="section-buttons">
+    <a href="2ndcse-a.html"  class="section-btn">
+    Sec A</a>
+    <a href="2ndcse-b.html"  class="section-btn">
+    Sec B</a>
+    
+</div>
+
+        </div>
+
+        <!-- RIGHT SIDE IMAGE -->
+        <div class="image-box">
+            <img src="../cse-bg-img/aSection.jpeg" alt="Computer Science">
+        </div>
+
+    </div>
+
+</body>
+</html>
