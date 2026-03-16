@@ -51,7 +51,7 @@ body {
         padding: 14px 0;
         margin: 0%;
         width: 100%;
-        margin-bottom: 70px;
+        margin-bottom: 20px;
         
     }
 
@@ -118,19 +118,14 @@ body {
 
 
 
-/* 
-.container {
-    background: rgba(255, 222, 254, 0.95);
-    
-    width: 85%;
-    max-width: 900px;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-   margin: 130px auto;
-} */
+
 .ap-section h5 {
-    text-align: center;
+    background:white;
+padding:8px 14px;
+border-radius:8px;
+margin:6px auto;
+width:fit-content;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
    
 
 }
@@ -164,7 +159,13 @@ body {
     font-size: 14px;
     color: #444;
 }
-
+.divider{
+width:400px;
+height:3px;
+background: #5f2c82;
+margin:20px auto;
+border-radius:10px;
+}
 /* HOD Section */
 .hod-section {
     text-align: center;
@@ -180,10 +181,17 @@ body {
     text-decoration: none;
     font-weight: 600;
     color: #333;
+    background:rgba(248, 188, 241, 0.652);
+padding:10px 16px;
+border-radius:8px;
+margin:8px auto;
+width:fit-content;
+/* box-shadow:0 4px 12px rgba(0,0,0,0.1); */
+transition:0.3s;
 }
 
 .hod-section a:hover {
-    color: #8a4fff;
+    color:  rgba(203, 103, 199, 0.674);;
 }
 
 /* Assistant Professors */
@@ -203,18 +211,95 @@ body {
 }
 
 .ap-section a:hover {
-    color: #8a4fff;
+    /* color:  rgba(203, 103, 200, 0.944); */
+     color: #602c82a5;
 }
 
-.ap-section h5 {
-    margin: 8px 0;
+.ap-section h4{
+ background:rgba(248, 188, 241, 0.652);
+padding:10px 16px;
+border-radius:8px;
+margin:8px auto;
+width:fit-content;
+/* box-shadow:0 4px 12px rgba(0,0,0,0.1); */
+transition:0.3s;
+
 }
 
- .vision-mission :hover {
+.ap-section h4:hover{
+transform:translateY(-3px);
+box-shadow:0 6px 15px rgba(0,0,0,0.15);
+}
+
+ .vision-mission:hover {
     transform: translateY(-2px);
     transition: 0.5s ease;
+    box-shadow:0 12px 25px rgba(95,44,130,0.3);
 
  }
+
+ /* PAGE LAYOUT */
+
+.page-wrapper{
+display:flex;
+align-items:center;
+text-align: center;
+gap:40px;
+}
+
+/* LEFT CONTENT */
+.page-text{
+flex:1;
+}
+
+/* RIGHT IMAGE */
+.page-illustration{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+background: rgba(255,255,255,0.25);
+border-radius:10px;
+padding:40px;
+min-height:450px;
+background: linear-gradient(
+135deg,
+rgba(255,255,255,0.25),
+rgba(255,255,255,0.1)
+);
+
+}
+.illustration-box{
+background: rgba(255,255,255,0.5);
+padding:20px;
+border-radius:15px;
+box-shadow:0 8px 20px rgba(95,44,130,0.2);
+}
+
+.page-illustration img{
+max-width:420px;
+width:100%;
+/* margin-top: 20px; */
+border-radius: 10px;
+min-height: 250px;
+}
+
+.container{
+position:relative;
+text-align:center;
+}
+
+.content{
+max-width:600px;
+margin:0 auto;
+}
+
+
+.section-title{
+text-align:center;
+margin:30px 0;
+color:#5f2c82;
+}
 
  @media(max-width:768px){
 
@@ -244,6 +329,30 @@ body {
             .quote-text p::before{
                 left:0;
             }
+            .page-wrapper{
+flex-direction:column;
+align-items:center;
+text-align:center;
+}
+
+.page-illustration img{
+max-width:220px;
+margin-top:5px;
+min-height: auto;
+border-radius: 10px;
+margin-bottom: 20px;
+}
+
+
+.side-image{
+position:static;
+margin-top:20px;
+text-align:center;
+}
+
+.side-image img{
+width:200px;
+}
         }
     </style>
 </head>
@@ -276,12 +385,13 @@ body {
 
         </div>
     </header>
+    <h1 class="section-title">CSE Department Welcome's You! </h1>
+<div class="container page-wrapper">
 
-    <div class="container">
+    <!-- LEFT SIDE CONTENT -->
+    <div class="page-text">
 
-        
         <section id="cs-vision-mission" class="mission-dashboard">
-          
         <div class="vision-mission">
 
             <div class="box">
@@ -291,34 +401,41 @@ body {
 
             <div class="box">
                 <h2>Mission</h2>
-                <p>To create innovatives, vibrant young leaders and entrepreneurs in Engineering and Technology for building the nation as knowledge power and empowering the rural community towards evolving a knowledge  society with equity and amity.</p>
+                <p>To create innovatives, vibrant young leaders and entrepreneurs in Engineering and Technology for building the nation.</p>
             </div>
-         
+
         </div>
         </section>
-        <div class="hod-section">
-            <h3>HOD:</h3>
-            <a href="hod-page.html">Mr.I.Raja Subramsnian</a>
-            <div class="hod-line"></div>
-        </div>
 
+        <div class="hod-section">
+            <h3>HOD :</h3>
+            <h4><a href="hod-page.html">Mr.I.Raja Subramsnian</a></h4>
+        </div>
+<div class="divider"></div>
         <div class="ap-section">
-            <h3> Assistant professors: </h3>
-           <h5> <a href="CA1.html"> Mr. A. Michael</a>  </h5>
-           <h5> <a href="CA2.html">  Miss. V.Pavitha</a> </h5>
-           <h5><a href="#"> MRS.M.DANI PACKIALSEELI</a> </h5>
-           <h5><a href="#"> MRS.C.DURGA JANANI</a> </h5>
-           <h5><a href="#"> MS.B.HARITHA</a> </h5>
-           <h5><a href="#"> MS.JAYA SAKTHI</a> </h5>
-           <h5><a href="#"> MS.A.JENISHA</a> </h5>
-           <h5><a href="#"> MR.A.MICHEAL</a> </h5>
-           <h5><a href="#"> MR.S.GEORGE JOSEPH EDISON</a> </h5>
-           <h5><a href="#"> DR.ABU BAKKAR SITHICK</a> </h5>
-            <div class="ap-line"></div>
+           <h3>Assistant Professors :</h3>
+
+
+            <h4><a href="CA1.html">Mr. A. Michael</a></h4>
+            <h4><a href="CA2.html">Miss. V.Pavitha</a></h4>
+            <h4><a href="#">MRS.M.DANI PACKIALSEELI</a></h4>
+            <h4><a href="#">MRS.C.DURGA JANANI</a></h4>
+            <h4><a href="#">MS.B.HARITHA</a></h4>
+            <h4><a href="#">MS.JAYA SAKTHI</a></h4>
+            <h4><a href="#">MS.A.JENISHA</a></h4>
+            <h4><a href="#">MR.A.MICHEAL</a></h4>
+            <h4><a href="#">MR.S.GEORGE JOSEPH EDISON</a></h4>
+            <h4><a href="#">DR.ABU BAKKAR SITHICK</a></h4>
         </div>
 
     </div>
 
+    <!-- RIGHT SIDE IMAGE -->
+    <div class="page-illustration">
+        <img src="../cse-bg-img/cse-department.jpg" alt="CSE Illustration">
+    </div>
+
+</div>
 </body>
 </html>
 

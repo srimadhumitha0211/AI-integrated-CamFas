@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-=======
-/* ===== GLOBAL RESET ===== */
-/* ================= GLOBAL RESET ================= */
-
->>>>>>> 34c0c20 (stud-home ui ready)
 *{
 margin:0;
 padding:0;
@@ -19,8 +13,6 @@ color:#333;
 
 
 /* ================= HEADER ================= */
-<<<<<<< HEAD
-<<<<<<< HEAD
 header{
 background: rgba(203, 103, 199, 0.674);
 backdrop-filter: blur(12px);
@@ -76,66 +68,6 @@ text-decoration: none;
         
 }
 
-=======
-
-=======
->>>>>>> 832e81f (few more changes)
-header{
-background: rgba(203, 103, 199, 0.674);
-backdrop-filter: blur(12px);
-border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-padding:8px 0;   /* reduced */
-}
-
-.logo-box img{
-width:45px;
-height:45px;
-border-radius:50%;
-border:2px solid #fff;
-}
-
-.logo-text h1{
-font-size:20px;
-color:#330e43;
-margin-bottom:2px;
-}
-
-.logo-text p{
-font-size:11px;
-color:#330e43;
-}
-
-.welcome-dashboard{
-width:100%;
-display:flex;
-justify-content:center;
-margin-top:80px;
-margin-bottom: 5px;
-}
-
-.welcome-dashboard h2{
-text-align:center;
-color:#4B0082;
-font-size:28px;
-}
-/* ================= TOP NAV ================= */
-
-.nav-buttons{
-display:flex;
-gap:18px;
-}
-
-.nav-btn{
-text-decoration: none;
-        color: #330e43;
-        font-size: 14px;
-        padding: 6px 14px;
-        border-radius: 20px;
-        transition: 0.3s;
-        
-}
-
->>>>>>> 34c0c20 (stud-home ui ready)
 .nav-btn:hover{
      background: rgba(255, 255, 255, 0.25);
 
@@ -148,15 +80,7 @@ text-decoration: none;
 display:flex;
 justify-content:center;
 gap:20px;
-<<<<<<< HEAD
-<<<<<<< HEAD
 margin:55px 0;
-=======
-margin:25px 0;
->>>>>>> 34c0c20 (stud-home ui ready)
-=======
-margin:55px 0;
->>>>>>> 832e81f (few more changes)
 flex-wrap:wrap;
 }
 
@@ -181,28 +105,12 @@ color:white;
 
 /* ================= DASHBOARD ================= */
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 
 .dashboard-content{
 max-width:1100px;
 margin:20px auto;
 padding:20px;
-=======
-.dashboard-content{
-max-width:1100px;
-margin:30px auto;
-padding:30px;
->>>>>>> 34c0c20 (stud-home ui ready)
-=======
-
-
-.dashboard-content{
-max-width:1100px;
-margin:20px auto;
-padding:20px;
->>>>>>> 832e81f (few more changes)
 background:rgba(255,255,255,0.35);
 backdrop-filter:blur(12px);
 border-radius:20px;
@@ -210,10 +118,6 @@ box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
 
 .dashboard-content h2{
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 832e81f (few more changes)
 margin-bottom:10px;
 color:#4B0082;
 }
@@ -257,19 +161,10 @@ margin-left: 50px;
 /* TITLE ALIGNMENT */
 
 .reviews-content h2{
-<<<<<<< HEAD
-=======
->>>>>>> 34c0c20 (stud-home ui ready)
-=======
->>>>>>> 832e81f (few more changes)
 margin-bottom:20px;
 color:#4B0082;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 832e81f (few more changes)
 /* ===== RESPONSIVE DESIGN ===== */
 
 @media (max-width:900px){
@@ -286,52 +181,25 @@ margin-top:20px;
 }
 
 }
-<<<<<<< HEAD
-=======
->>>>>>> 34c0c20 (stud-home ui ready)
-=======
->>>>>>> 832e81f (few more changes)
 
 /* ================= STATS CARDS ================= */
 
 .stats-cards{
-<<<<<<< HEAD
-<<<<<<< HEAD
   margin-top: 40px;
-=======
->>>>>>> 34c0c20 (stud-home ui ready)
-=======
-  margin-top: 40px;
->>>>>>> 832e81f (few more changes)
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:20px;
-margin-top:30px;
+margin-top:20px;
+margin-bottom: 30px;
 }
 
 .stat-card{
 background:rgba(255,255,255,0.6);
-<<<<<<< HEAD
-<<<<<<< HEAD
 padding:18px;
 border-radius:15px;
 text-align:center;
 box-shadow:0 6px 15px rgba(0,0,0,0.1);
 transition:0.25s;
-=======
-padding:20px;
-border-radius:15px;
-text-align:center;
-box-shadow:0 6px 15px rgba(0,0,0,0.1);
-transition:0.3s;
->>>>>>> 34c0c20 (stud-home ui ready)
-=======
-padding:18px;
-border-radius:15px;
-text-align:center;
-box-shadow:0 6px 15px rgba(0,0,0,0.1);
-transition:0.25s;
->>>>>>> 832e81f (few more changes)
 }
 
 .stat-card:hover{
@@ -420,8 +288,6 @@ background:#f6ecff;
 /* ================= REVIEW SECTION ================= */
 
 .reviews-section{
-<<<<<<< HEAD
-<<<<<<< HEAD
 /* margin-top:30px; */
 max-width:1000px;
 margin:30px auto;
@@ -439,31 +305,6 @@ transition: 0.25s;
 }
 .review-card:hover{
 transform:translateY(-3px);
-=======
-margin-top:30px;
-=======
-/* margin-top:30px; */
->>>>>>> 832e81f (few more changes)
-max-width:1000px;
-margin:30px auto;
-text-align: center;
-padding: 20px;
-}
-
-.review-card{
-background:rgba(239, 187, 233, 0.737);
-padding:20px;
-border-radius:14px;
-margin-bottom:15px;
-box-shadow:0 4px 10px rgba(0,0,0,0.08);
-<<<<<<< HEAD
->>>>>>> 34c0c20 (stud-home ui ready)
-=======
-transition: 0.25s;
-}
-.review-card:hover{
-transform:translateY(-3px);
->>>>>>> 832e81f (few more changes)
 }
 
 .review-header{
@@ -478,15 +319,7 @@ text-align:center;
 
 .review-meta{
 font-size:13px;
-<<<<<<< HEAD
-<<<<<<< HEAD
 color:#dd88cd;
-=======
-color:#777;
->>>>>>> 34c0c20 (stud-home ui ready)
-=======
-color:#dd88cd;
->>>>>>> 832e81f (few more changes)
 margin-bottom:8px;
 }
 
@@ -515,16 +348,8 @@ text-align:left;   /* keeps text readable inside cards */
 
 .review-form{
 background:rgba(255,255,255,0.5);
-<<<<<<< HEAD
-<<<<<<< HEAD
   /* background: rgba(203, 103, 199, 1.0);
             color: white; */
-=======
->>>>>>> 34c0c20 (stud-home ui ready)
-=======
-  /* background: rgba(203, 103, 199, 1.0);
-            color: white; */
->>>>>>> 832e81f (few more changes)
 padding:20px;
 border-radius:15px;
 max-width: 700px;
@@ -539,10 +364,6 @@ gap:10px;
 flex-wrap:wrap;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 832e81f (few more changes)
 
 .reviews-header{
 display:flex;
@@ -557,11 +378,6 @@ margin-bottom:20px;
 width:120px;
 opacity:0.9;
 }
-<<<<<<< HEAD
-=======
->>>>>>> 34c0c20 (stud-home ui ready)
-=======
->>>>>>> 832e81f (few more changes)
 /* ================= TABS ================= */
 
 .tab-buttons{
@@ -576,38 +392,16 @@ justify-content: center;
 padding:8px 16px;
 border:none;
 border-radius:20px;
-<<<<<<< HEAD
-<<<<<<< HEAD
  background: rgba(203, 103, 200, 0.933);
 /* background:#ddd; */
-=======
-background:#ddd;
->>>>>>> 34c0c20 (stud-home ui ready)
-=======
- background: rgba(203, 103, 200, 0.933);
-/* background:#ddd; */
->>>>>>> 832e81f (few more changes)
 cursor:pointer;
 font-weight:600;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 832e81f (few more changes)
 /* .tab-btn.active{
   background: rgba(203, 103, 199, 1.0);
             color: white;
 } */
-<<<<<<< HEAD
-=======
-.tab-btn.active{
-background:linear-gradient(90deg,#8e24aa,#ba68c8);
-color:white;
-}
->>>>>>> 34c0c20 (stud-home ui ready)
-=======
->>>>>>> 832e81f (few more changes)
 
 
 /* ================= BUTTONS ================= */
@@ -615,27 +409,14 @@ color:white;
 button{
 cursor:pointer;
 transition:0.2s;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 832e81f (few more changes)
 margin-top: 10px;
   background: rgba(203, 103, 199, 1.0);
             color: white;
 
-<<<<<<< HEAD
-=======
->>>>>>> 34c0c20 (stud-home ui ready)
-=======
->>>>>>> 832e81f (few more changes)
 }
 
 button:hover{
 opacity:0.9;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 832e81f (few more changes)
   background: rgba(203, 103, 200, 0.582);
             color: white;
 }
@@ -654,14 +435,6 @@ border:none;
 border-radius:8px;
 }
 
-<<<<<<< HEAD
-=======
-}
-
-
->>>>>>> 34c0c20 (stud-home ui ready)
-=======
->>>>>>> 832e81f (few more changes)
 /* ================= RESPONSIVE ================= */
 
 @media(max-width:768px){
@@ -675,13 +448,5 @@ border-radius:8px;
 
     .nav-buttons {
         flex-wrap: wrap;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        justify-content: center;
-         gap: 10px;
->>>>>>> 34c0c20 (stud-home ui ready)
-=======
->>>>>>> 832e81f (few more changes)
     }
 }
