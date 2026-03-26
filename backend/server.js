@@ -102,6 +102,14 @@ app.get('/student/leave-history', async (req, res) => {
 app.get('/', (req, res) => {
     res.render('auth/login');
 });
+// const express = require('express');
+// const router = express.Router();
+
+// router.get('/login', (req, res) => {
+//     res.render('auth/login');
+// });
+
+// module.exports = router;
 
 app.get('/register', (req, res) => {
     res.render('auth/register');

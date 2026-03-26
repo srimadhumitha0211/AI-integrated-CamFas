@@ -10,21 +10,18 @@
     <header style="padding: 10px; margin-bottom: 25px; border-radius:20px;">
         <div class="container header-flex">
             <div class="logo-box">
-                
-                   <img src="/cse-bg-img/logo.jpeg" alt="College Logo">
-                   <div class="logo-text">
-                      <h1>CAMFAS</h1>
+                <img src="/cse-bg-img/logo.jpeg" alt="College Logo">
+                <div class="logo-text">
+                    <h1>CAMFAS</h1>
                     <p>Simplifying Campus Life for Faculty and Students</p>
-                   </div>
-            </div>    
-                <nav class="nav-buttons">
-                    <a href="/student/dashboard">Home</a>
-                    <a href="/student/leave-form">Apply Leave</a>
-                    <a href="/student/leave-history">History</a>
-                    <a href="/auth/logout">Logout</a>
-                     <a href="/student/ai-assistant">AI Study</a>
-                </nav>
-            
+                </div>
+            </div>
+            <nav class="nav-buttons">
+                <a style="text-decoration: none;" href="/student/dashboard">Home</a>
+                <a style="text-decoration: none;" href="/student/leave-form">Apply Leave</a>
+                <a style="text-decoration: none;" href="/student/leave-history">History</a>
+                <a style="text-decoration: none;" href="/auth/logout">Logout</a>
+            </nav>
         </div>
     </header>
 
@@ -32,6 +29,10 @@
     <section id="apply-leave-section" class="dashboard-section">
         <div class="section-header">
             <h2><i class="fas fa-file-upload"></i> Apply for Leave</h2>
+            <!-- NEW: Emergency Leave Button -->
+            <button class="btn btn-emergency" onclick="openEmergencyModal()">
+                🚨 Emergency Leave
+            </button>
         </div>
         <h3>Fill the form below to apply for leave</h3>
 
@@ -52,7 +53,6 @@
                 <div class="form-group">
                     <label for="startDate"><i class="fas fa-calendar-alt"></i> Start Date</label>
                     <input type="date" id="startDate" name="startDate" required>
-               
                     <label for="endDate"><i class="fas fa-calendar-alt"></i> End Date</label>
                     <input type="date" id="endDate" name="endDate" required>
                 </div>
@@ -61,6 +61,19 @@
             <div class="form-group">
                 <label for="reason"><i class="fas fa-comment"></i> Reason</label>
                 <textarea id="reason" name="reason" rows="1" required placeholder="Provide your reason"></textarea>
+            </div>
+
+            <!-- NEW: Optional Apology Message on Normal Form -->
+            <div class="form-group" id="apologySection" style="display:none;">
+                <label for="apologyMsg"><i class="fas fa-envelope"></i> Apology Message <span style="font-size:12px; color:#888;">(optional — sent to faculty along with this leave)</span></label>
+                <textarea id="apologyMsg" name="apologyMessage" rows="2" placeholder="Dear Sir/Madam, I apologize for..."></textarea>
+            </div>
+
+            <div style="margin-bottom:12px;">
+                <label style="font-weight:400; color:#555; display:flex; align-items:center; gap:8px; cursor:pointer;">
+                    <input type="checkbox" id="includeApology" onchange="toggleApology()" style="width:auto;">
+                    Include an apology message with this leave application
+                </label>
             </div>
 
             <div class="form-actions">
@@ -75,7 +88,6 @@
     </section>
 
     <div class="dashboard-content">
-        <!-- Home Section (simplified) -->
         <section id="home-section" class="dashboard-section active">
             <div class="stats-cards">
                 <div class="stat-card">
@@ -113,7 +125,7 @@
                 </div>
             </div>
         </section>
-        
+
         <footer class="footer-wrapper">
             <div class="wrapper-1" style="margin-left: 30px;">
                 <h4>Department</h4>
@@ -161,29 +173,68 @@
             </div>
         </footer>
     </div>
+
+    <!-- ===== NEW: EMERGENCY LEAVE MODAL ===== -->
+    <div class="modal" id="emergencyModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:999;">
+        <div class="modal-content">
+            <h2 style="color:white; margin-bottom:12px;">🚨 Emergency Leave Application</h2>
+            <p style="color:#ffe0f0; font-size:14px; margin-bottom:14px;">
+                Couldn't apply before your leave? Submit it now — an apology message will be auto-attached and sent to your faculty.
+            </p>
+
+            <div class="form-group">
+                <label style="color:white;">Start Date</label>
+                <input type="date" id="emergencyStart">
+            </div>
+            <div class="form-group">
+                <label style="color:white;">End Date</label>
+                <input type="date" id="emergencyEnd">
+            </div>
+            <div class="form-group">
+                <label style="color:white;">Reason for Emergency</label>
+                <input type="text" id="emergencyReason" placeholder="e.g. Family medical emergency">
+            </div>
+
+            <div style="background:rgba(255,255,255,0.15); border-radius:10px; padding:12px; margin-bottom:14px;">
+                <p style="color:#ffe0f0; font-size:13px;">
+                    ⚠️ <strong>Auto-apology that will be sent:</strong><br>
+                    <em>"I sincerely apologize for not applying for leave in advance due to an unavoidable emergency. I request your kind understanding."</em>
+                </p>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-primary" onclick="submitEmergencyLeave()">
+                    <i class="fas fa-paper-plane"></i> Submit Emergency Leave
+                </button>
+                <button class="btn btn-secondary" onclick="closeEmergencyModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== NEW: TOAST NOTIFICATION ===== -->
+    <div id="toast" style="display:none; position:fixed; bottom:30px; right:30px; background:#4caf50; color:white; padding:12px 22px; border-radius:10px; font-weight:600; font-size:14px; box-shadow:0 4px 15px rgba(0,0,0,0.2); z-index:1000;"></div>
+
     <style>
-        * 
- {
+        
+ *{
     margin: 10;
     padding: 10;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
 header {
-   
         background: rgba(203, 103, 199, 0.674);
         backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.25);
         padding: 14px 0;
         margin: 0%;
         width: 100%;
-       
-        
     }
     .container{
-  width:95%;
-  max-width:1200px;
+  width:100%;
+  max-width:1100px;
   margin:auto;
+  padding: 0px;
 }
 
 .header-wrapper{
@@ -209,9 +260,6 @@ header {
     text-decoration: none;
     font-size: 17px;
     align-items: center;
-    /* margin-bottom: 5px; */
-    
-    
 }
 .header-wrapper h1{
      font-size: 20px;
@@ -222,7 +270,6 @@ header {
 }
 .header-wrapper p{
      font-size: 12px;
-        /* color: #f1f1f1; */
         color: #330e43;
 }
 .nav-buttons {
@@ -232,7 +279,6 @@ header {
 
     .nav-btn {
         text-decoration: none;
-        /* color: #fff; */
         color: #330e43;
         font-size: 14px;
         padding: 6px 14px;
@@ -244,13 +290,11 @@ header {
         background: rgba(255, 255, 255, 0.25);
     }
 
-/* .header-image {
-    height: 60px;
-    width: 80px;
-    align-items: center;
-} */
-@media (max-width: 768px) {
+    .nav-buttons {
+        text-decoration: none;
+    }
 
+@media (max-width: 768px) {
     .header-wrapper {
         flex-direction: column;
         gap: 0px;
@@ -258,21 +302,12 @@ header {
     .header-image{
         align-items: center;
     }
-
     .header-wrapper nav {
         flex-direction: column;
         align-items: center;
         gap: 0px;
     }
-    /* .header-flex {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-        gap: 10px;
-    } */
 }
-
-
 
 /* ================= GLOBAL RESET ================= */
 
@@ -284,9 +319,7 @@ header {
 }
 
 body{
-    /* background: linear-gradient(-45deg, #d5abf7, #dbbcec, #de8ede, #c084f5); */
-    /* background: linear-gradient(135deg, #d5abf7, #dbbcec, #de8ede); */
-     background: linear-gradient(135deg, #e6c7ff, #f3dcff, #ffd6ff);
+    background: linear-gradient(135deg, #e6c7ff, #f3dcff, #ffd6ff);
     background-size: 400% 400%;
     animation: gradientMove 10s ease infinite;
     min-height:100vh;
@@ -299,7 +332,6 @@ body{
         backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.25);
         padding: 14px 0;
-        
     }
 
     .header-flex {
@@ -314,7 +346,6 @@ body{
 
     .nav-btn {
         text-decoration: none;
-        /* color: #fff; */
         color: #330e43;
         font-size: 14px;
         padding: 6px 14px;
@@ -325,10 +356,6 @@ body{
     .nav-btn:hover {
         background: rgba(255, 255, 255, 0.25);
     }
-
-
-
-
 
     /* LOGO */
     .logo-box {
@@ -348,11 +375,11 @@ body{
     .logo-text h1 {
         font-size: 20px;
         color: #330e43;
+        display: flex;
     }
 
     .logo-text span {
         font-size: 12px;
-        /* color: #f1f1f1; */
         color: #330e43;
     }
 
@@ -364,7 +391,6 @@ body{
 
     .nav-btn {
         text-decoration: none;
-        /* color: #fff; */
         color: #330e43;
         font-size: 14px;
         padding: 6px 14px;
@@ -375,10 +401,6 @@ body{
     .nav-btn:hover {
         background: rgba(255, 255, 255, 0.25);
     }
-
-
-
-
 
 @keyframes gradientMove{
     0%{ background-position:0% 50%; }
@@ -423,8 +445,7 @@ body{
 
 .nav-link:hover,
 .nav-link.active{
-background:#ede7ff;    
-      /* background: linear-gradient(90deg, #8e24aa, #ba68c8); */
+    background:#ede7ff;
     transform:translateX(5px);
 }
 
@@ -475,8 +496,7 @@ background:#ede7ff;
 }
 
 .btn-primary{
-    /* background:linear-gradient(135deg,#8e2de2,#4a00e0); */
-      background: linear-gradient(90deg, #8e24aa, #ba68c8);
+    background: linear-gradient(90deg, #8e24aa, #ba68c8);
     color:white;
 }
 
@@ -488,6 +508,18 @@ background:#ede7ff;
 .btn:hover{
     transform:scale(1.05);
     box-shadow:0 8px 20px rgba(75,0,130,0.4);
+}
+
+/* ===== NEW: Emergency button style ===== */
+.btn-emergency {
+    background: linear-gradient(135deg, #ff5252, #c62828);
+    color: white;
+    animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,82,82,0.5); }
+    50%       { box-shadow: 0 0 0 8px rgba(255,82,82,0); }
 }
 
 /* ================= LEAVE FORM ================= */
@@ -544,8 +576,7 @@ th, td{
 }
 
 th{
-    /* background:#ede7ff; */
-      background: linear-gradient(90deg, #8e24aa, #ba68c8);
+    background: linear-gradient(90deg, #8e24aa, #ba68c8);
     color:#4B0082;
 }
 
@@ -561,7 +592,7 @@ tr:hover{
     gap:20px;
 }
  
- .stat-card{
+.stat-card{
     background: rgba(255,255,255,0.25);
     backdrop-filter: blur(15px);
     border-radius:20px;
@@ -590,8 +621,7 @@ tr:hover{
 }
 
 .modal-content{
-    /* background:white; */
-      background: linear-gradient(90deg, #8e24aa, #ba68c8);
+    background: linear-gradient(90deg, #8e24aa, #ba68c8);
     width:90%;
     max-width:500px;
     padding:25px;
@@ -601,12 +631,10 @@ tr:hover{
 /* ================= RESPONSIVE ================= */
 
 @media(max-width:768px){
-    
-     .header-flex {
+    .header-flex {
         flex-direction: column;
         gap: 15px;
     }
-
     .nav-buttons {
         flex-wrap: wrap;
         justify-content: center;
@@ -614,15 +642,13 @@ tr:hover{
     .dashboard-container{
         flex-direction:column;
     }
-
     .sidebar{
         width:100%;
     }
-
     .form-row{
         flex-direction:column;
     }
-     .nav-buttons {
+    .nav-buttons {
         flex-wrap: wrap;
         justify-content: center;
         gap: 10px;
@@ -651,7 +677,7 @@ tr:hover{
 }
 
 .criteria-list p{
-    margin-bottom:15px;   /* gap between each point */
+    margin-bottom:15px;
 }
 
 #my-leaves-section h2{
@@ -660,7 +686,7 @@ tr:hover{
 }
 
 #leavesTableBody tr{
-    border-bottom:15px solid transparent; /* gap between rows */
+    border-bottom:15px solid transparent;
 }
 
 .leave-details p{
@@ -669,7 +695,7 @@ tr:hover{
 
 .filters{
     display:flex;
-    gap:15px;          /* gap between All Status & Refresh */
+    gap:15px;
     margin-top:15px;
 }
 
@@ -697,41 +723,21 @@ tr:hover{
 }
 
 .sidebar-nav .nav-link{
-    display:inline-block;     /* prevents full width */
-    width:auto;               /* no body width */
+    display:inline-block;
+    width:auto;
     padding:10px 20px;
     border-radius:12px;
     background:rgba(255,255,255,0.25);
     backdrop-filter:blur(10px);
     text-align:center;
-    min-width:200px;          /* clean box size */
+    min-width:200px;
 }
 
-/* #my-leaves-section h2{
-    margin-bottom:25px;
-} */
-
-/* #my-leaves-section h2{
-    text-align:center;
-    margin-bottom:12px;   /* smaller gap */
- 
-
-
-/* 
- */
-/* #leavesTable{
-    margin-top: 20px;
-    margin-bottom: 20px;
-} */
-
-/* .leave-details {
-    line-height: 1.8;
-} */
 .table-container p {
     padding-bottom: 20px;   
     padding-top: 10px;
-    /* row-gap: 100px; */
 }
+
 .footer-wrapper {
     background-color: #ffffff;
     padding: 50px 20px;
@@ -740,24 +746,20 @@ tr:hover{
     flex-wrap: wrap;
     gap: 40px;
     border-top: 1px solid #e5e5e5;
-     justify-content: center;
+    justify-content: center;
 }
 
-/* Each Column */
 .footer-wrapper > div {
     flex: 1;
     min-width: 220px;
-   
 }
 
-/* Headings */
 .footer-wrapper h4 {
     font-size: 18px;
     margin-bottom: 15px;
     color: #222;
 }
 
-/* List Styling */
 .footer-wrapper ul {
     list-style: none;
     padding: 0;
@@ -775,7 +777,6 @@ tr:hover{
     color: #0077ff;
 }
 
-/* Social Links */
 .social-links {
     margin-top: 15px;
     display: flex;
@@ -794,35 +795,28 @@ tr:hover{
     color: #0077ff;
 }
 
-
-/* ========== RESPONSIVE ========== */
 @media (max-width: 600px){
   .section-header{
     flex-direction: column;
     align-items: flex-start;
   }
-
   .filters{
     width: 100%;
     justify-content: space-between;
   }
 }
-@media (max-width: 768px) {
 
+@media (max-width: 768px) {
     .footer-wrapper {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
-
     .social-links {
         align-items: center;
     }
 }
-
-
     </style>
-    
 
     <script>
         // Set min date to today
@@ -830,7 +824,6 @@ tr:hover{
         document.getElementById('startDate').min = today;
         document.getElementById('endDate').min = today;
 
-        // Update end date min when start date changes
         document.getElementById('startDate').addEventListener('change', function() {
             document.getElementById('endDate').min = this.value;
         });
@@ -847,6 +840,77 @@ tr:hover{
                     leaves.filter(l => l.status === 'rejected').length;
                 document.getElementById('totalCount').textContent = leaves.length;
             });
+
+        // ===== NEW: Toggle apology textarea =====
+        function toggleApology() {
+            const checked = document.getElementById('includeApology').checked;
+            document.getElementById('apologySection').style.display = checked ? 'block' : 'none';
+        }
+
+        // ===== NEW: Open / Close Emergency Modal =====
+        function openEmergencyModal() {
+            const modal = document.getElementById('emergencyModal');
+            modal.style.display = 'flex';
+        }
+
+        function closeEmergencyModal() {
+            const modal = document.getElementById('emergencyModal');
+            modal.style.display = 'none';
+            document.getElementById('emergencyStart').value  = '';
+            document.getElementById('emergencyEnd').value    = '';
+            document.getElementById('emergencyReason').value = '';
+        }
+
+        // Close modal when clicking outside the box
+        document.getElementById('emergencyModal').addEventListener('click', function(e) {
+            if (e.target === this) closeEmergencyModal();
+        });
+
+        // ===== NEW: Submit Emergency Leave =====
+        async function submitEmergencyLeave() {
+            const startDate = document.getElementById('emergencyStart').value;
+            const endDate   = document.getElementById('emergencyEnd').value;
+            const reason    = document.getElementById('emergencyReason').value.trim();
+
+            if (!startDate || !endDate || !reason) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            const autoApology = "I sincerely apologize for not applying for leave in advance due to an unavoidable emergency. I request your kind understanding.";
+
+            try {
+                const res = await fetch('/leave/apply', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        leaveType: 'Emergency Leave',
+                        startDate,
+                        endDate,
+                        reason,
+                        apologyMessage: autoApology,
+                        status: 'emergency'
+                    })
+                });
+
+                if (res.ok) {
+                    closeEmergencyModal();
+                    showToast('🚨 Emergency leave submitted with apology to faculty!');
+                } else {
+                    alert('Submission failed. Please try again.');
+                }
+            } catch (err) {
+                alert('Something went wrong. Please try again.');
+            }
+        }
+
+        // ===== NEW: Toast =====
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 3500);
+        }
     </script>
 </body>
 </html>

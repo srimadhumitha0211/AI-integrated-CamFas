@@ -24,27 +24,43 @@ header{
 background: rgba(203, 103, 199, 0.674);
 backdrop-filter: blur(12px);
 border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-padding:8px 0;   /* reduced */
+padding:14px 0;   /* reduced */
 }
+.header-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+ .logo-box {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
 
 .logo-box img{
 width:45px;
 height:45px;
 border-radius:50%;
+
 border:2px solid #fff;
 }
 
 .logo-text h1{
 font-size:20px;
 color:#330e43;
-margin-bottom:2px;
+display: flex;
+
 }
 
-.logo-text p{
-font-size:11px;
+.logo-text span{
+font-size:20px;
 color:#330e43;
 }
-
+.logo-text span {
+        font-size: 12px;
+        /* color: #f1f1f1; */
+        color: #330e43;
+    }
 .welcome-dashboard{
 width:100%;
 display:flex;
@@ -63,15 +79,20 @@ font-size:28px;
 .nav-buttons{
 display:flex;
 gap:18px;
+text-decoration: none;
 }
 
 .nav-btn{
 text-decoration: none;
         color: #330e43;
         font-size: 14px;
-        padding: 6px 14px;
+        /* padding: 6px 14px; */
         border-radius: 20px;
         transition: 0.3s;
+       
+        margin-right: 50px;
+        font-size: 18px;
+        font-weight: 500px;
         
 }
 
@@ -221,7 +242,9 @@ color:#4B0082;
 font-size:14px;
 margin-top:5px;
 }
-
+.container header-flex{
+    margin-bottom: 60px;
+}
 
 /* ================= FORMS ================= */
 
@@ -461,10 +484,10 @@ border-radius:8px;
 <body>
     
      <header>
-        <div class="container header-flex">
+        <div class="container header-flex" style="margin-bottom: 10px; margin-top: 10px;">
 
             <!-- LOGO + NAME -->
-            <div class="logo-box">
+            <div class="logo-box" style="margin-left: 50px;">
                 <img src="../cse-bg-img/logo.jpeg">
                 <div class="logo-text">
                     <h1>CAMFAS</h1>
@@ -476,11 +499,11 @@ border-radius:8px;
 
             <!-- NAV -->
                <nav class="nav-buttons">
-                    <a href="/student/dashboard">Home</a>
-                    <a href="/student/leave-form">Apply Leave</a>
-                    <a href="/student/leave-history">History</a>
-                    <a href="/auth/logout">Logout</a>
-                     <a href="/student/ai-assistant">AI Study</a>
+                    <a href="/staticPages/HOME-PAGE.html" class="nav-btn">Home</a>
+                    <a href="/student/leave-form" class="nav-btn">Apply Leave</a>
+                    <a href="/student/leave-history" class="nav-btn">History</a>
+                    <a href="/auth/logout" class="nav-btn">Logout</a>
+                     <!-- <a href="/student/ai-assistant" class="nav-btn">AI Study</a> -->
                 </nav>
             
 
@@ -488,13 +511,13 @@ border-radius:8px;
     </header>
             <div>
                     <nav class="sidebar-nav">
-                <a href="#" class="nav-link active" data-section="home">
+                <a href="/staticPages/HOME-PAGE.html" class="nav-link active" data-section="home">
                     <i class="fas fa-home"></i> Return to Home
                 </a>
-                <a href="leave-form.html" class="nav-link" data-section="apply-leave">
+                <a href="leave-form" class="nav-link" data-section="apply-leave">
                     <i class="fas fa-file-upload"></i> Apply for Leave
                 </a>
-                <a href="leave-history.html" class="nav-link" data-section="my-leaves">
+                <a href="leave-history" class="nav-link" data-section="my-leaves">
                     <i class="fas fa-history"></i> My Leave History
                 </a>
                 </nav>

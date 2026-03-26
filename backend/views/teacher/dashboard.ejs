@@ -296,7 +296,7 @@ color:white;
 background:#4caf50;
 }
 
-.actions button:last-child{
+.actions button:nth-child(2){
 background:#f44336;
 }
 
@@ -346,7 +346,7 @@ table, th, td {
 
             <!-- LOGO + NAME -->
             <div class="logo-box">
-                <img src="cse-bg-img/logo.jpeg">
+                <img src="../cse-bg-img/logo.jpeg">
                 <div class="logo-text">
                     <h1>CAMFAS</h1>
                     <p>Simplifying Campus Life for Faculty and Students</p>
@@ -378,7 +378,7 @@ table, th, td {
 </div>
 
 <div class="header-image">
-<img src="backend/cse-bg-img/teacher dashboard.jpeg" class="dashboard-img">
+<img src="../cse-bg-img/teacher dashboard.jpeg" class="dashboard-img">
 </div>
 
 </div>
@@ -411,7 +411,7 @@ table, th, td {
                         <td>${leave.reason}</td>
                         <td class="actions">
                             <button onclick="approveLeave('${leave._id}')">Approve</button>
-                            <button onclick="rejectLeave('${leave._id}')">Reject</button>
+                            <button onclick="rejectLeave('${leave._id}' )">Reject</button>
                             <input type="text" id="comment-${leave._id}" placeholder="Comment">
                         </td>
                     `;

@@ -134,6 +134,8 @@ box-shadow:0 3px 10px rgba(0,0,0,0.1);
     gap: 30px;
     justify-content: center;
     margin-bottom: 40px;
+    width: 90%;
+    margin-left: 50px;
     
 }
 
@@ -191,7 +193,7 @@ transition:0.3s;
 }
 
 .hod-section a:hover {
-    color:  rgba(203, 103, 199, 0.674);;
+    color:  rgba(203, 103, 199, 0.674);
 }
 
 /* Assistant Professors */
@@ -236,6 +238,12 @@ box-shadow:0 6px 15px rgba(0,0,0,0.15);
     transition: 0.5s ease;
     box-shadow:0 12px 25px rgba(95,44,130,0.3);
 
+ }
+ .years-sections{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    
  }
 
  /* PAGE LAYOUT */
@@ -299,6 +307,25 @@ margin:0 auto;
 text-align:center;
 margin:30px 0;
 color:#5f2c82;
+}
+.font{
+    font-weight: 600;
+    color: #333;
+    background:rgba(248, 188, 241, 0.652);
+    padding:10px 16px;
+border-radius:8px;
+margin:8px auto;
+width:fit-content;
+/* box-shadow:0 4px 12px rgba(0,0,0,0.1); */
+transition:0.3s;
+text-decoration: none;
+}
+.font:hover
+{
+     color:  rgba(203, 103, 199, 0.674);
+}
+.font a{
+    text-decoration: none;
 }
 
  @media(max-width:768px){
@@ -377,21 +404,18 @@ width:200px;
 
             <!-- NAV -->
             <nav class="nav-buttons">
-                <a href="#" class="nav-btn">Login</a>
+                <a href="/" class="nav-btn">Login</a>
                 <a href="#departments" class="nav-btn">Departments</a>
-                <a href="mainAbout.html" class="nav-btn">About Us</a>
+                <a href="mainAbout.html" class="nav-btn">About College</a>
                 <a href="#contact" class="nav-btn">Contact</a>
             </nav>
 
         </div>
     </header>
     <h1 class="section-title">CSE Department Welcome's You! </h1>
-<div class="container page-wrapper">
-
-    <!-- LEFT SIDE CONTENT -->
-    <div class="page-text">
-
+    
         <section id="cs-vision-mission" class="mission-dashboard">
+            
         <div class="vision-mission">
 
             <div class="box">
@@ -403,9 +427,14 @@ width:200px;
                 <h2>Mission</h2>
                 <p>To create innovatives, vibrant young leaders and entrepreneurs in Engineering and Technology for building the nation.</p>
             </div>
-
+          
         </div>
         </section>
+<div class="container page-wrapper">
+
+    <!-- LEFT SIDE CONTENT -->
+    <div class="page-text">
+
 
         <div class="hod-section">
             <h3>HOD :</h3>
@@ -417,11 +446,11 @@ width:200px;
 
 
             <h4><a href="CA1.html">Mr. A. Michael</a></h4>
-            <h4><a href="CA2.html">Miss. V.Pavitha</a></h4>
+            <h4><a href="CA3.html">Miss. V.Pavitha</a></h4>
+            <h4><a href="CA2.html">MS.JAYA SAKTHI</a></h4>
             <h4><a href="#">MRS.M.DANI PACKIALSEELI</a></h4>
             <h4><a href="#">MRS.C.DURGA JANANI</a></h4>
             <h4><a href="#">MS.B.HARITHA</a></h4>
-            <h4><a href="#">MS.JAYA SAKTHI</a></h4>
             <h4><a href="#">MS.A.JENISHA</a></h4>
             <h4><a href="#">MR.A.MICHEAL</a></h4>
             <h4><a href="#">MR.S.GEORGE JOSEPH EDISON</a></h4>
@@ -431,8 +460,15 @@ width:200px;
     </div>
 
     <!-- RIGHT SIDE IMAGE -->
+      <div class="years-sections">
+            <div class="font">
+           <a href="year-selection.html"> View Years And Sections</a>
+        </div>
+       <div>
     <div class="page-illustration">
-        <img src="../cse-bg-img/cse-department.jpg" alt="CSE Illustration">
+         <img src="../cse-bg-img/cse-department.jpg" alt="CSE Illustration">
+       </div>
+        </div>
     </div>
 
 </div>

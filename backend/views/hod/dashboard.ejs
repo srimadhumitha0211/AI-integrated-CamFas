@@ -92,6 +92,7 @@ header{
     display:flex;
     justify-content:flex-end;
     margin-top:15px;
+    gap: 30px;
 }
 
 
@@ -327,6 +328,7 @@ justify-content:center;
 }
 .dashboard-img img{
     max-width:180px;
+    opacity: 80%;
 }
 
 .header-image{
@@ -365,7 +367,7 @@ width: 250px;
 
             <!-- LOGO + NAME -->
             <div class="logo-box">
-                <img src="cse-bg-img/logo.jpeg">
+                <img src="../cse-bg-img/logo.jpeg">
                 <div class="logo-text">
                     <h1>CAMFAS</h1>
                     <p>Simplifying Campus Life for Faculty and Students</p>
@@ -376,11 +378,12 @@ width: 250px;
 
             <!-- NAV -->
             <nav class="nav-buttons">
-                <a href="#" class="nav-btn">Login</a>
-                <a href="#departments" class="nav-btn">Departments</a>
-                <a href="mainAbout.html" class="nav-btn">About Us</a>
-                <a href="#contact" class="nav-btn">Contact</a>
-            </nav>
+                    <a href="/staticPages/HOME-PAGE.html" class="nav-btn">Home</a>
+                    <a href="/staticPages/mainAbout.html" class="nav-btn">About College</a>
+                    <a href="/staticPages/cse-department.html" class="nav-btn">CSE DEPARTMENT</a>
+                    <a href="/auth/logout" class="nav-btn">Logout</a>
+                     <!-- <a href="/student/ai-assistant" class="nav-btn">AI Study</a> -->
+                </nav>
 
         </div>
     </header>
@@ -389,6 +392,7 @@ width: 250px;
 <div class="container">
 
 <div class="top-bar">
+    <a href="/staticPages/hod-page.html" class="logout">View My Profile</a>
 <a href="/auth/logout" class="logout">Logout</a>
 </div>
 
@@ -397,12 +401,12 @@ width: 250px;
 
 <div class="hod-dashboard">
     <h1>HOD Dashboard</h1>
-    <p>Welcome <%= user.name %> | Department: <%= user.department %></p>
+    <p style="font-size: 20px;">Welcome <%= user.name %> | Department: <%= user.department %></p>
 </div>
 
-<div class="dashboard-img">
-    <img src="backend/cse-bg-img/new hod.jpg">
-</div>
+<!-- <div class="dashboard-img">
+    <img src="../cse-bg-img/hodimage.jpeg">
+</div> -->
 
 </div>
 

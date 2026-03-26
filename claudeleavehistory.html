@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Leave History</title>
+    <link rel="stylesheet" href="glady.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    /* ===== PAGE TITLE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+  font-family: "Poppins", sans-serif;
+}
+
+/* Body Layout */
+body {
+  font-family: Arial, sans-serif;
+   background: linear-gradient(135deg, #e6c7ff, #f3dcff, #ffd6ff);
+  min-height: 100vh;
+}
+
+.container{
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* HEADER */
+  header {
+        background: rgba(203, 103, 199, 0.674);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 14px 0;
+        }
+
+    .header-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-box {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .logo-box img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        background: #ca93e2;;
+    }
+
+    .logo-text h1 {
+        font-size: 20px;
+        color: #330e43;
+    }
+
+    .logo-text span {
+        font-size: 12px;
+        color: #330e43;
+    }
+
+    /* NAV */
+    .nav-buttons {
+        display: flex;
+        gap: 18px;
+    }
+
+    .nav-btn {
+        text-decoration: none;
+        color: #330e43;
+        font-size: 14px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+
+    .nav-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+h1{
+text-align:center;
+color:#4B0082;
+margin-bottom:20px;
+}
+
+/* ===== FILTER BAR ===== */
+.filters{
+display:flex;
+justify-content:center;
+gap:15px;
+margin:25px 0;
+flex-wrap:wrap;
+}
+
+.filters select{
+padding:8px 12px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+.filters button{
+padding:8px 18px;
+border:none;
+border-radius:20px;
+background: rgba(203, 103, 199, 1.0);
+color:white;
+font-weight:600;
+cursor:pointer;
+}
+
+/* ===== TABLE CONTAINER ===== */
+.table-container{
+max-width:1000px;
+margin:30px auto;
+overflow-x:auto;
+background:rgba(255,255,255,0.35);
+backdrop-filter:blur(10px);
+padding:20px;
+border-radius:15px;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* ===== TABLE ===== */
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+border-radius:10px;
+overflow:hidden;
+}
+
+th{
+background: rgba(213, 88, 209, 0.727);
+color:white;
+padding:12px;
+text-align:center;
+}
+
+td{
+padding:12px;
+text-align:center;
+border-bottom:1px solid #eee;
+}
+
+tr:hover{
+background:#f6ecff;
+}
+
+ table, th, td {
+    border: 1px solid #f5cde9;
+}
+
+/* ===== STATUS COLORS ===== */
+.status-pending{
+color:#ff9800;
+font-weight:600;
+}
+
+.status-approved{
+color:#4caf50;
+font-weight:600;
+}
+
+.status-rejected{
+color:#f44336;
+font-weight:600;
+}
+
+/* ===== NEW STATUSES ONLY (no existing class changed) ===== */
+.status-dead {
+    color: #9e9e9e;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.status-emergency {
+    color: #e91e63;
+    font-weight: 700;
+}
+
+.history-layout{
+display:flex;
+gap:40px;
+align-items:flex-start;
+margin-top:20px;
+}
+
+.history-content{
+flex:2;
+}
+
+.history-image{
+flex:1;
+display:flex;
+justify-content:center;
+opacity: 90%;
+}
+
+.history-image img{
+width:100%;
+max-width:280px;
+height:auto;
+border-radius: 10px;
+}
+
+/* ===== NEW: INFO PANELS ===== */
+.info-panel {
+    margin: 20px 0 0 0;
+}
+
+.info-card {
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    padding: 16px 22px;
+    border-left: 5px solid #ab47bc;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #555;
+}
+
+.info-card h3 {
+    color: #4B0082;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.info-card ul {
+    padding-left: 18px;
+    line-height: 1.9;
+}
+
+.info-card.dead-card     { border-left-color: #9e9e9e; }
+.info-card.emergency-card { border-left-color: #f44336; }
+
+/* ===== NEW: EMERGENCY BUTTON ===== */
+.btn-emergency {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ff5252, #c62828);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,82,82,0.5); }
+    50%       { box-shadow: 0 0 0 8px rgba(255,82,82,0); }
+}
+
+/* ===== NEW: APOLOGY BUTTON IN TABLE ===== */
+.btn-apology {
+    padding: 5px 12px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ab47bc, #7b1fa2);
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btn-apology:hover { opacity: 0.85; }
+
+/* ===== NEW: MODAL ===== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+.modal-overlay.active { display: flex; }
+
+.modal-box {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    width: 90%;
+    max-width: 460px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    position: relative;
+}
+.modal-box h2 { color: #4B0082; margin-bottom: 12px; font-size: 19px; }
+.modal-box p  { color: #555; font-size: 14px; margin-bottom: 12px; }
+
+.modal-box textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 100px;
+    font-family: "Poppins", sans-serif;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+    justify-content: flex-end;
+}
+
+.btn-send {
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #ab47bc, #7b1fa2);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-cancel {
+    padding: 8px 20px;
+    background: #eee;
+    color: #333;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+/* ===== NEW: TOAST ===== */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #4caf50;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: none;
+    z-index: 1000;
+}
+
+@media (max-width: 768px) {
+    .header-flex{ 
+        flex-direction: column; 
+        align-items: center; 
+        text-align: center;
+        gap: 15px;
+    }
+    .nav-buttons{ 
+        flex-wrap: wrap; 
+        justify-content: center;
+        gap: 10px; 
+    }
+    .history-layout{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+    }
+    .history-image img{
+        max-width:200px;
+        margin-bottom:20px;
+    }
+}
+</style>
+</head>
+<body>
+    
+    <header>
+        <div class="container header-flex">
+            <!-- LOGO + NAME -->
+            <div class="logo-box">
+                <img src="cse-bg-img/logo.jpeg">
+                <div class="logo-text">
+                    <h1>CAMFAS</h1>
+                    <p>Simplifying Campus Life for Faculty and Students</p>
+                </div>
+            </div>
+
+            <!-- NAV -->
+            <nav class="nav-buttons">
+                <a href="#" class="nav-btn">Login</a>
+                <a href="#departments" class="nav-btn">Departments</a>
+                <a href="mainAbout.html" class="nav-btn">About Us</a>
+                <a href="#contact" class="nav-btn">Contact</a>
+            </nav>
+        </div>
+    </header>
+    
+    <div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-link active" data-section="home">
+                <i class="fas fa-home"></i> Return to Home
+            </a>
+            <a href="leave-form.html" class="nav-link" data-section="apply-leave">
+                <i class="fas fa-file-upload"></i> Apply for Leave
+            </a>
+            <a href="leave-history.html" class="nav-link" data-section="my-leaves">
+                <i class="fas fa-history"></i> My Leave History
+            </a>
+        </nav>
+    </div>
+
+    <div class="container">
+
+        <h1 style="margin-top: 30px;">My Leave History</h1>
+
+        <!-- ===== NEW: INFO PANELS ===== -->
+        <div class="info-panel">
+            <div class="info-card dead-card">
+                <h3>⏳ Dead Application — What does it mean?</h3>
+                <ul>
+                    <li>If your CA does not respond within <strong>3 days</strong>, the application is automatically marked as <strong>Dead</strong>.</li>
+                    <li>Dead applications are stored in your history for reference (Excel sheet record is maintained).</li>
+                    <li>You can re-apply or send an apology to the faculty using the <strong>Send Apology</strong> button.</li>
+                </ul>
+            </div>
+            <div class="info-card emergency-card">
+                <h3>🚨 Couldn't Apply Before Leave? (Emergency Situation)</h3>
+                <ul>
+                    <li>If you were in an emergency and couldn't apply in advance, click <strong>🚨 Emergency Leave</strong> after returning.</li>
+                    <li>An apology message will be auto-attached to your request and sent to the faculty.</li>
+                    <li>You can also write a custom apology from the <strong>Send Apology</strong> button on any past leave entry.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="history-layout">
+
+            <div class="history-content">
+
+                <div class="filters">
+                    <select id="statusFilter" style="padding: 8px; background-color: rgba(254, 233, 254, 0.892);">
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                        <option value="dead">Dead (No Response)</option>
+                        <option value="emergency">Emergency Leave</option>
+                    </select>
+
+                    <!-- NEW: Emergency Leave quick button -->
+                    <button class="btn-emergency" onclick="openEmergencyModal()">🚨 Emergency Leave</button>
+
+                    <button id="refreshBtn">🔄 Refresh</button>
+                </div>
+
+                <div class="table-container">
+                    <table id="leavesTable">
+                        <thead>
+                            <tr>
+                                <th>Applied On</th>
+                                <th>Leave Type</th>
+                                <th>Dates</th>
+                                <th>Days</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                                <th>Teacher Comment</th>
+                                <th>HOD Comment</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leavesTableBody"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="history-image">
+                <img src="backend/public/cse-bg-img/formpink.jpeg" alt="Leave Illustration">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== NEW: APOLOGY MODAL ===== -->
+    <div class="modal-overlay" id="apologyModal">
+        <div class="modal-box">
+            <span class="modal-close" onclick="closeModal('apologyModal')">✕</span>
+            <h2>✉️ Send Apology to Faculty</h2>
+            <p id="apologyLeaveInfo" style="color:#7b1fa2; font-size:13px;"></p>
+            <p>Write your apology message below. This will be sent to your class advisor and HOD.</p>
+            <textarea id="apologyText" placeholder="Dear Sir/Madam, I sincerely apologize for the absence without prior notice..."></textarea>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModal('apologyModal')">Cancel</button>
+                <button class="btn-send" onclick="sendApology()">Send Apology</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== NEW: EMERGENCY MODAL ===== -->
+    <div class="modal-overlay" id="emergencyModal">
+        <div class="modal-box">
+            <span class="modal-close" onclick="closeModal('emergencyModal')">✕</span>
+            <h2>🚨 Apply for Emergency Leave</h2>
+            <p>You couldn't apply before your leave. Fill in the details — an apology note will be auto-attached and sent to the faculty.</p>
+            <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:12px;">
+                <input type="date" id="emergencyStart" style="padding:8px; border-radius:8px; border:1px solid #ddd; font-family:Poppins,sans-serif;">
+                <input type="date" id="emergencyEnd"   style="padding:8px; border-radius:8px; border:1px solid #ddd; font-family:Poppins,sans-serif;">
+                <input type="text" id="emergencyReason" placeholder="Reason for emergency leave" style="padding:8px; border-radius:8px; border:1px solid #ddd; font-family:Poppins,sans-serif;">
+            </div>
+            <p style="font-size:13px; color:#e91e63;">⚠️ Auto-apology: <em>"I sincerely apologize for not applying in advance due to an unavoidable emergency. I request your kind understanding."</em></p>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModal('emergencyModal')">Cancel</button>
+                <button class="btn-send" onclick="submitEmergencyLeave()">Submit Emergency Leave</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== NEW: TOAST NOTIFICATION ===== -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const DEAD_THRESHOLD_DAYS = 3; // CA must respond within 3 days
+        let currentApologyLeaveId = null;
+
+        // Check if a pending application has crossed the threshold → Dead
+        function isDeadApplication(leave) {
+            if (!leave.status.includes('pending')) return false;
+            const applied = new Date(leave.appliedAt);
+            const now = new Date();
+            const diffDays = (now - applied) / (1000 * 60 * 60 * 24);
+            return diffDays > DEAD_THRESHOLD_DAYS;
+        }
+
+        // Resolve final display status
+        function resolveStatus(leave) {
+            if (leave.status === 'emergency') return 'emergency';
+            if (isDeadApplication(leave))     return 'dead';
+            return leave.status;
+        }
+
+        // Map status → CSS class (original classes untouched)
+        function getStatusClass(status) {
+            if (status.includes('pending'))  return 'status-pending';
+            if (status === 'approved')       return 'status-approved';
+            if (status === 'rejected')       return 'status-rejected';
+            if (status === 'dead')           return 'status-dead';
+            if (status === 'emergency')      return 'status-emergency';
+            return '';
+        }
+
+        // Map status → display label
+        function getStatusLabel(status) {
+            if (status === 'dead')      return '⚫ Dead (No Response)';
+            if (status === 'emergency') return '🚨 Emergency Leave';
+            return status.charAt(0).toUpperCase() + status.slice(1);
+        }
+
+        async function loadLeaves() {
+            const response = await fetch('/leave/my-leaves');
+            const leaves = await response.json();
+            const filter = document.getElementById('statusFilter').value;
+
+            let filteredLeaves = leaves;
+            if (filter !== 'all') {
+                filteredLeaves = leaves.filter(leave => {
+                    const resolved = resolveStatus(leave);
+                    if (filter === 'pending')   return resolved === 'pending';
+                    if (filter === 'dead')      return resolved === 'dead';
+                    if (filter === 'emergency') return resolved === 'emergency';
+                    return resolved === filter;
+                });
+            }
+
+            const tbody = document.getElementById('leavesTableBody');
+            tbody.innerHTML = '';
+
+            if (filteredLeaves.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;color:#aaa;padding:20px;">No leave records found.</td></tr>`;
+                return;
+            }
+
+            filteredLeaves.forEach(leave => {
+                const row = tbody.insertRow();
+                const start   = new Date(leave.startDate).toLocaleDateString();
+                const end     = new Date(leave.endDate).toLocaleDateString();
+                const applied = new Date(leave.appliedAt).toLocaleDateString();
+                const days    = Math.ceil((new Date(leave.endDate) - new Date(leave.startDate)) / (1000*60*60*24)) + 1;
+
+                const resolvedStatus = resolveStatus(leave);
+                const statusClass    = getStatusClass(resolvedStatus);
+                const statusLabel    = getStatusLabel(resolvedStatus);
+
+                // Show apology button for dead, emergency, rejected, approved leaves
+                const showApology = ['dead', 'emergency', 'rejected', 'approved'].includes(resolvedStatus);
+                const actionCell  = showApology
+                    ? `<button class="btn-apology" onclick="openApologyModal('${leave._id}', '${start} to ${end}')">✉️ Send Apology</button>`
+                    : `<span style="color:#ccc;font-size:12px;">—</span>`;
+
+                row.innerHTML = `
+                    <td>${applied}</td>
+                    <td>${leave.leaveType}</td>
+                    <td>${start} to ${end}</td>
+                    <td>${days}</td>
+                    <td>${leave.reason}</td>
+                    <td class="${statusClass}">${statusLabel}</td>
+                    <td>${leave.teacherComment || '-'}</td>
+                    <td>${leave.hodComment || '-'}</td>
+                    <td>${actionCell}</td>
+                `;
+            });
+        }
+
+        // ---- APOLOGY MODAL ----
+        function openApologyModal(leaveId, dateRange) {
+            currentApologyLeaveId = leaveId;
+            document.getElementById('apologyLeaveInfo').textContent = `Leave: ${dateRange}`;
+            document.getElementById('apologyText').value = '';
+            document.getElementById('apologyModal').classList.add('active');
+        }
+
+        async function sendApology() {
+            const message = document.getElementById('apologyText').value.trim();
+            if (!message) { alert('Please write an apology message.'); return; }
+            try {
+                await fetch(`/leave/apology/${currentApologyLeaveId}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+                closeModal('apologyModal');
+                showToast('✅ Apology sent to faculty successfully!');
+            } catch (err) {
+                alert('Failed to send apology. Please try again.');
+            }
+        }
+
+        // ---- EMERGENCY MODAL ----
+        function openEmergencyModal() {
+            document.getElementById('emergencyStart').value  = '';
+            document.getElementById('emergencyEnd').value    = '';
+            document.getElementById('emergencyReason').value = '';
+            document.getElementById('emergencyModal').classList.add('active');
+        }
+
+        async function submitEmergencyLeave() {
+            const startDate = document.getElementById('emergencyStart').value;
+            const endDate   = document.getElementById('emergencyEnd').value;
+            const reason    = document.getElementById('emergencyReason').value.trim();
+            if (!startDate || !endDate || !reason) { alert('Please fill in all fields.'); return; }
+
+            const autoApology = "I sincerely apologize for not applying for leave in advance due to an unavoidable emergency. I request your kind understanding.";
+
+            try {
+                await fetch('/leave/apply', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        leaveType: 'Emergency Leave',
+                        startDate,
+                        endDate,
+                        reason,
+                        apologyMessage: autoApology,
+                        status: 'emergency'
+                    })
+                });
+                closeModal('emergencyModal');
+                showToast('🚨 Emergency leave submitted with apology!');
+                loadLeaves();
+            } catch (err) {
+                alert('Failed to submit. Please try again.');
+            }
+        }
+
+        // ---- HELPERS ----
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 3500);
+        }
+
+        document.getElementById('refreshBtn').addEventListener('click', loadLeaves);
+        document.getElementById('statusFilter').addEventListener('change', loadLeaves);
+        loadLeaves();
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins', sans-serif;
+}
+
+/* Body */
+
+body{
+background:linear-gradient(135deg,#f3dcff,#e6c7ff);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+/* Container */
+
+.container{
+width:80%;
+text-align:center;
+margin-top: 30px;
+}
+
+/* Title */
+
+.title{
+display:inline-block;
+border:2px solid #444;
+padding:10px 40px;
+margin-bottom:40px;
+font-size:28px;
+background:white;
+border-radius:6px;
+color:#4b0082;
+}
+
+/* Grid */
+
+.event-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:40px;
+justify-items:center;
+}
+
+/* Event Card */
+
+.event-box{
+background:white;
+padding:15px;
+width:250px;
+border-radius:10px;
+box-shadow:0 6px 15px rgba(0,0,0,0.15);
+text-align:center;
+}
+
+/* Image resize */
+
+.event-box img{
+width:200px;
+height:200px;
+object-fit:cover;
+border-radius:8px;
+transition:0.3s;
+}
+
+/* Hover zoom */
+
+.event-box img:hover{
+transform:scale(1.1);
+}
+
+/* Text */
+
+.event-box p{
+margin-top:10px;
+font-size:16px;
+color:#333;
+}
+
+/* Back Button */
+
+.back-btn{
+display:inline-block;
+margin-top:40px;
+padding:10px 25px;
+background:#6a0dad;
+color:white;
+text-decoration:none;
+border-radius:6px;
+font-size:15px;
+transition:0.3s;
+}
+
+.back-btn:hover{
+background:#4b0082;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.event-grid{
+grid-template-columns:1fr;
+}
+
+}
